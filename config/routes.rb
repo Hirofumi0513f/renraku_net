@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   namespace :admin do
+    get 'actives/update'
+  end
+  namespace :admin do
     get 'divisions/index'
     get 'divisions/create'
     get 'divisions/edit'
