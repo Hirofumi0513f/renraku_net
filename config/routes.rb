@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
   namespace :admin do
+    get 'departments/index'
+    get 'departments/create'
+    get 'departments/edit'
+    get 'departments/update'
+  end
+  namespace :admin do
     get 'staffs/index'
     get 'staffs/show'
     get 'staffs/edit'
