@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    get 'positions/index'
+    get 'positions/create'
+    get 'positions/edit'
+    get 'positions/update'
+  end
     devise_for :admins, controllers: {
     sessions: "admin/controllers"
   }

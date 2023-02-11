@@ -27,25 +27,25 @@
             <ul class ="navbar-nav ml-auto">
               <% if request.fullpath.include?("/admin") && admin_signed_in? %>
                 <li class="nav-item">
-                  <%= link_to admin_items_path ,class:'nav-link text-light' do %>
+                  <%= link_to admin_root_path ,class:'nav-link text-light' do %>
                     <i class = "fas fa-sharp fa-solid fa-store"></i>
                     HOME
                   <% end %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to admin_customers_path,class:'nav-link text-light' do  %>
+                  <%= link_to admin_staffs_path,class:'nav-link text-light' do  %>
                     <i class = "fas fa-sharp fa-solid fa-users"></i>
                     社員一覧
                   <% end %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to admin_root_path,class:'nav-link text-light' do %>
+                  <%= link_to admin_departments_path,class:'nav-link text-light' do %>
                     <i class = 'fas fa-clipboard'></i>
                     組織一覧
                   <% end %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to admin_genres_path,class:'nav-link text-light' do %>
+                  <%= link_to admin_positons_path,class:'nav-link text-light' do %>
                     <i class = 'fas fa-code-branch'></i>
                     役職一覧
                   <% end %>
