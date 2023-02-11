@@ -18,7 +18,6 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root to: "homes#top"
-    get '/about',to: "homes#about", as: "about"
     resources :acitives, only: [:update]
 
     resources :staffs, only: [:index, :show, :edit, :search]
