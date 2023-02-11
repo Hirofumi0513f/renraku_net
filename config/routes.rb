@@ -1,41 +1,31 @@
 Rails.application.routes.draw do
+    devise_for :admins, controllers: {
+    sessions: "admin/controllers"
+  }
+
+
+  devise_for :staffs, controllers: {
+    registrations: "public/registrations",
+    sessions: 'public/sessions'
+  }
+
+  root to: "public/homes#top"
+  get '/about',to: "public/homes#about", as: "about"
+
   namespace :public do
-    get 'staffs/index'
-    get 'staffs/show'
-    get 'staffs/edit'
-    get 'staffs/update'
-    get 'staffs/search'
+    resources :staffs, only: [:index, :show, :edit, :update, :search]
   end
-  namespace :public do
-    get 'homes/top'
-    get 'homes/about'
-  end
+
   namespace :admin do
-    get 'actives/update'
+    root to: "homes#top"
+    get '/about',to: "homes#about", as: "about"
+    resources :acitives, only: [:update]
+
+    resources :staffs, only: [:index, :show, :edit, :search]
+
+    resources :departments, only: [:index, :create, :edit, :update]
+
+    resources :divisions, only: [:index, :create, :edit, :update]
   end
-  namespace :admin do
-    get 'divisions/index'
-    get 'divisions/create'
-    get 'divisions/edit'
-    get 'divisions/update'
-  end
-  namespace :admin do
-    get 'departments/index'
-    get 'departments/create'
-    get 'departments/edit'
-    get 'departments/update'
-  end
-  namespace :admin do
-    get 'staffs/index'
-    get 'staffs/show'
-    get 'staffs/edit'
-    get 'staffs/search'
-  end
-  namespace :admin do
-    get 'homes/top'
-    get 'homes/about'
-  end
-  devise_for :admins
-  devise_for :staffs
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
