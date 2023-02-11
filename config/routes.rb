@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
   namespace :public do
+    get 'staffs/index'
+    get 'staffs/show'
+    get 'staffs/edit'
+    get 'staffs/update'
+    get 'staffs/search'
+  end
+  namespace :public do
     get 'homes/top'
     get 'homes/about'
   end
