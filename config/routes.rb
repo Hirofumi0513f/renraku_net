@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
-    devise_for :admins, controllers: {
-    sessions: "admin/controllers"
+    devise_for :admin, controllers: {
+    sessions: "admin/sessions"
   }
-
 
   devise_for :staffs, controllers: {
     registrations: "public/registrations",
@@ -15,7 +14,7 @@ Rails.application.routes.draw do
   namespace :public do
     resources :staffs, only: [:index, :show, :edit, :update, :search]
     #社員検索用の名前付きルーティング
-    get '/staffs/search', to:"staff#search", as: "search"
+    get '/staffs/search', to:"staff#search", as: "search_staff"
   end
 
   namespace :admin do
@@ -24,7 +23,7 @@ Rails.application.routes.draw do
 
     resources :staffs, only: [:index, :show, :edit]
     #社員検索用の名前付きルーティング
-    get '/staffs/search', to:"staffs#search", as: "admin_search"
+    get '/staffs/search', to:"staffs#search", as: "search_staff"
 
     resources :departments, only: [:index, :create, :edit, :update]
 
