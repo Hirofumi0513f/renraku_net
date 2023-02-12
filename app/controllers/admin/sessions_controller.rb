@@ -1,6 +1,16 @@
 # frozen_string_literal: true
 
 class Admin::SessionsController < Devise::SessionsController
+  # 管理者ログイン後の遷移先の設定
+  def after_sign_in_path_for(resource)
+    admin_root_path
+  end
+
+  # 管理者ログアウト後の遷移先
+  def after_sign_out_path_for(resource)
+    root_path
+  end
+
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
