@@ -48,13 +48,13 @@ staffs.each do |staff|
   end
 end
 
-positions = [
-  {email: 'hirofumi.fukuda@renrakunet.com', name: '社員' },
-]
-positions.each do |position|
-  staff = Staff.find_by(email: position[:email])
-  Position.find_or_create_by(staff_id: staff.id, name: position[:name])
-end
+# positions = [
+#   {email: 'hirofumi.fukuda@renrakunet.com', name: '社員' },
+# ]
+# positions.each do |position|
+#   staff = Staff.find_by(email: position[:email])
+#   Position.find_or_create_by(staff_id: staff.id, name: position[:name])
+# end
 
   # Position.create!(
   #   staff_id: 1,
@@ -64,23 +64,77 @@ end
   #   staff_id: 1,
   #   name: "販売推進部")
 
-departments = [
-  {email: 'hirofumi.fukuda@renrakunet.com', name: '販売推進部' },
-  {email: 'hirofumi.fukuda2@renrakunet.com', name: '販売推進部' },
-]
-departments.each do |department|
-  staff = Staff.find_by(email: department[:email])
-  Department.find_or_create_by(staff_id: staff.id, name: department[:name])
-end
+# departments = [
+#   {email: 'hirofumi.fukuda@renrakunet.com', name: '販売推進部' },
+#   {email: 'hirofumi.fukuda2@renrakunet.com', name: '販売推進部' },
+# ]
+# departments.each do |department|
+#   staff = Staff.find_by(email: department[:email])
+#   Department.find_or_create_by(staff_id: staff.id, name: department[:name])
+# end
 
   # Division.create!(
   #   department_id: 1,
   #   name: "第二販売支援課")
 
-divisions = [
-  {email: 'hirofumi.fukuda@renrakunet.com', name: '第二販売支援課' },
-]
-divisions.each do |division|
-  staff = Department.find_by(email: division[:department])
-  Division.find_or_create_by(department_id: department.id, name: division[:name])
-end
+# divisions = [
+#   {email: 'hirofumi.fukuda@renrakunet.com', name: '第二販売支援課' },
+# ]
+# divisions.each do |division|
+#   staff = Department.find_by(email: division[:department])
+#   Division.find_or_create_by(department_id: department.id, name: division[:name])
+# end
+
+# 役職の初期データを投入_2023_0213
+PositionName.create!(
+  [
+    {name: '社員'},
+    {name: '係長'},
+    {name: '課長'},
+    {name: '部長'},
+    {name: '社長'},
+    {name: '嘱託社員'},
+    {name: 'パートナー社員'}
+  ]
+    )
+
+# 課名の初期データを作成_2023_0213
+DivisionName.create!(
+  [
+    {name: '第一販売推進課'},
+    {name: '第二販売推進課'},
+    {name: '施設管理課'},
+    {name: '財務管理課'},
+    {name: '金融営業課'},
+    {name: 'セキュリティ推進課'},
+    {name: '第一企画課'},
+    {name: '第二企画課'},
+    {name: '人事課'},
+    {name: '監査課'}
+  ]
+    )
+
+# 部名の初期データを作成_2023_0213
+DepartmentName.create!(
+  [
+    {name: '総務部'},
+    {name: '人事部'},
+    {name: '営業部'},
+    {name: '販売推進部'},
+    {name: 'サービス企画部'},
+    {name: 'セキュリティ管理部'}
+  ]
+    )
+
+# 社員ID１に紐づく役職テーブルの作成_2023_0213
+Position.create!(
+  staff_id: 1,
+  position_name_id: 1
+  )
+
+# 社員ID１に紐づく組織テーブルの作成_2023_0213
+Department.create!(
+  staff_id: 1,
+  department_name_id: 4,
+  division_name_id: 2
+  )

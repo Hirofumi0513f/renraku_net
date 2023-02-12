@@ -1,3 +1,3 @@
 class PositionName < ApplicationRecord
-  belongs_to :posirion
+  belongs_to :position
 end
