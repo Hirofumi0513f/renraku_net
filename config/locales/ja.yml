@@ -7,8 +7,8 @@ ja:
       work_style:
         retirement: "退職"
         work: "勤務"
-        short_work:"短時間勤務"
-        leave_of_absence:"休職"
+        short_work: "短時間勤務"
+        leave_of_absence: "休職"
 # # deviseの日本語化の実施
   activerecord:
     errors:
