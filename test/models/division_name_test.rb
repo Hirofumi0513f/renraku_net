@@ -1,6 +1,6 @@
 require "test_helper"
 
-class DivisionTest < ActiveSupport::TestCase
+class DivisionNameTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

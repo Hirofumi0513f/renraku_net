@@ -1,0 +1,2 @@
+class DivisionName < ApplicationRecord
+end
