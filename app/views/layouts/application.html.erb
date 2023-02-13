@@ -14,9 +14,11 @@
     <header>
       <nav class = "navbar navbar-expand-lg navbar-dark bg-dark text-white">
         <div class = "container">
-          <%= link_to new_admin_session_path, class:'navbar-brand p-1' do %>
+          <!--ロゴをクリックしたらホーム画面に戻る-->
+          <%= link_to root_path, class:'navbar-brand p-1' do %>
             <i class = 'fas fa-sitemap'></i>
           <% end %>
+          <!--webページ名をクリックしたらホーム画面に戻る-->
           <%= link_to root_path, class:'navbar-brand p-3' do %>
             <span>連絡ネット</span>
           <% end %>
@@ -68,7 +70,7 @@
               <% elsif staff_signed_in? %>
                 <li class="nav-item">
                   <!--ログインユーザの詳細ページに飛ばしたい。ここで記述するのか。それともviewページで設定するのか？-->
-                  <%= link_to public_staff_path(current_user),class:'nav-link text-light' do %>
+                  <%= link_to public_staff_path(current_staff),class:'nav-link text-light' do %>
                     <i class = 'fas fa-addresses-card'></i>
                     マイページ
                   <% end %>
@@ -111,12 +113,13 @@
                     ログイン
                   <% end %>
                 </li>
-                <li class="nav-item">
-                  <%= link_to new_admin_session_path,class:'nav-link text-light' do %>
-                    <i class = 'fas fa-user-lock'></i>
-                    管理者ログイン
-                  <% end %>
-                </li>
+                <!--管理者ログインのボタン→admin_deviseが不要になったためコメントアウト-->
+                <!--<li class="nav-item">-->
+                  <%#= link_to new_admin_session_path,class:'nav-link text-light' do %>
+                    <!--<i class = 'fas fa-user-lock'></i>-->
+                    <!--管理者ログイン-->
+                  <%# end %>
+                <!--</li>-->
               <% end %>
             </ul>
           </div>
