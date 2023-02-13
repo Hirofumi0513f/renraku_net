@@ -68,7 +68,7 @@ ActiveRecord::Schema.define(version: 2023_02_12_131840) do
 
   create_table "positions", force: :cascade do |t|
     t.integer "staff_id", null: false
-    t.integer "position_id", null: false
+    t.integer "position_name_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
