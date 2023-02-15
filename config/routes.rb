@@ -1,4 +1,16 @@
 Rails.application.routes.draw do
+  namespace :public do
+    get 'position_names/index'
+    get 'position_names/create'
+    get 'position_names/edit'
+    get 'position_names/update'
+  end
+  namespace :public do
+    get 'division_names/index'
+    get 'division_names/create'
+    get 'division_names/edit'
+    get 'division_names/update'
+  end
   devise_for :staffs, controllers: {
     registrations: "public/registrations",
     sessions: 'public/sessions'
