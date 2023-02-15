@@ -1,16 +1,4 @@
 Rails.application.routes.draw do
-  namespace :public do
-    get 'position_names/index'
-    get 'position_names/create'
-    get 'position_names/edit'
-    get 'position_names/update'
-  end
-  namespace :public do
-    get 'division_names/index'
-    get 'division_names/create'
-    get 'division_names/edit'
-    get 'division_names/update'
-  end
   devise_for :staffs, controllers: {
     registrations: "public/registrations",
     sessions: 'public/sessions'
@@ -25,15 +13,11 @@ Rails.application.routes.draw do
     get '/staffs/search', to:"staff#search", as: "search_staff"
 
     resources :department_names, only: [:index, :create, :edit, :update]
+
+    resources :division_names, only: [:index, :create, :edit, :update]
+
+    resources :position_names, only: [:index, :create, :edit, :update]
   end
 
-  namespace :admin do
-
-    resources :departments, only: [:index, :create, :edit, :update]
-
-    resources :divisions, only: [:index, :create, :edit, :update]
-
-    resources :positions, only: [:index, :create, :edit, :update]
-  end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
