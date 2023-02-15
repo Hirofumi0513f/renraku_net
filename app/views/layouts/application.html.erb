@@ -29,7 +29,8 @@
             <ul class ="navbar-nav ml-auto">
               <!--ヘッダーの条件分岐-->
               <!--URLに「admin」が含まれるかつadminでサインインしている時-->
-              <% if request.fullpath.include?("/admin") && admin_signed_in? %>
+              <%# if request.fullpath.include?("/admin") && admin_signed_in? %>
+              <% if staff_signed_in? && current_staff.is_admin? %>
                 <li class="nav-item">
                   <%= link_to admin_root_path ,class:'nav-link text-light' do %>
                     <i class = "fas fa-house"></i>
@@ -71,19 +72,19 @@
                 <li class="nav-item">
                   <!--ログインユーザの詳細ページに飛ばしたい。ここで記述するのか。それともviewページで設定するのか？-->
                   <%= link_to public_staff_path(current_staff),class:'nav-link text-light' do %>
-                    <i class = 'fas fa-addresses-card'></i>
+                    <i class = 'fas fa-address-card'></i>
                     マイページ
                   <% end %>
                 </li>
                 <li class="nav-item">
                   <%= link_to public_staffs_path,class:'nav-link text-light' do %>
-                    <i class = 'fas fa-people-group'></i>
+                    <i class = 'fas fa-solid fa-users'></i>
                     社員一覧
                   <% end %>
                 </li>
                 <li class="nav-item">
                   <%= link_to public_search_staff_path,class:'nav-link text-light' do %>
-                    <i class = 'fas fa-magnifying-glass'></i>
+                    <i class ='fas fa-solid fa-magnifying-glass'></i>
                     検索
                   <% end %>
                 </li>
