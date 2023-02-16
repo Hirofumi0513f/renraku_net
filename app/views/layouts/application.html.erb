@@ -32,14 +32,8 @@
               <%# if request.fullpath.include?("/admin") && admin_signed_in? %>
               <% if staff_signed_in? && current_staff.is_admin? %>
                 <li class="nav-item">
-                  <%= link_to admin_root_path ,class:'nav-link text-light' do %>
-                    <i class = "fas fa-house"></i>
-                    HOME
-                  <% end %>
-                </li>
-                <li class="nav-item">
-                  <%= link_to admin_staffs_path,class:'nav-link text-light' do  %>
-                    <i class = "fas fa-people-group"></i>
+                  <%= link_to public_staffs_path,class:'nav-link text-light' do  %>
+                    <i class = 'fas fa-users'></i>
                     社員一覧
                   <% end %>
                 </li>
@@ -56,7 +50,7 @@
                   <% end %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to public_positon_names_path,class:'nav-link text-light' do %>
+                  <%= link_to public_position_names_path,class:'nav-link text-light' do %>
                     <i class = 'fas fa-layer-group'></i>
                     役職一覧
                   <% end %>
@@ -68,7 +62,7 @@
                   <% end %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to destroy_session_path,class:'nav-link text-light' ,method: :delete do %>
+                  <%= link_to destroy_staff_session_path,class:'nav-link text-light' ,method: :delete do %>
                     <i class = 'fas fa-sign-out-alt'></i>
                     ログアウト
                   <% end %>
@@ -90,7 +84,7 @@
                 </li>
                 <li class="nav-item">
                   <%= link_to public_search_staff_path,class:'nav-link text-light' do %>
-                    <i class ='fas fa-solid fa-magnifying-glass'></i>
+                    <i class='fas fa-solid fa-Q'></i>
                     検索
                   <% end %>
                 </li>
@@ -110,13 +104,13 @@
                 </li>
                 <li class="nav-item">
                   <%= link_to new_staff_registration_path,class:'nav-link text-light' do %>
-                    <i class = "fas fa-user-plus"></i>
+                    <i class = 'fas fa-user-plus'></i>
                     新規登録
                   <% end %>
                 </li>
                 <li class="nav-item">
                   <%= link_to new_staff_session_path,class:'nav-link text-light' do %>
-                    <i class = "fas fa-sign-in-alt"></i>
+                    <i class = 'fas fa-sign-in-alt'></i>
                     ログイン
                   <% end %>
                 </li>
