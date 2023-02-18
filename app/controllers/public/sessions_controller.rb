@@ -1,12 +1,14 @@
 # frozen_string_literal: true
 
 class Public::SessionsController < Devise::SessionsController
+  
+  
   # 社員のログイン後の遷移先の指定
   def after_sign_in_path_for(resource)
     public_staffs_path(current_staff)
   end
 
-  # 社員のログイン後の遷移先の指定
+  # 社員のログアウト後の遷移先の指定
   def after_sign_out_path_for(resource)
     root_path
   end

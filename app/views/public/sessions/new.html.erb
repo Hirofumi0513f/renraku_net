@@ -5,7 +5,7 @@
     </div>
   </div>
   <div class="row mx-auto"></div>
-    <%= form_with model: @staff,url:staff_session_path(resource_name) do |f| %>
+    <%= form_with model: @staff,url:session_path(resource_name) do |f| %>
       <table class="tabel table-borderless">
         <tr>
           <th class="col-5"><%= f.label :email,"メールアドレス" %></th>
