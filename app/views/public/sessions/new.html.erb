@@ -1,26 +1,49 @@
-<h2>Log in</h2>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+<div class="container text-center" style="margin-top:30px">
+  <div class="row mx-auto" style="margin:30px">
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0">
+      <h3>ログイン</h3>
     </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
   </div>
-<% end %>
-
-<%= render "public/shared/links" %>
+  <div class="row mx-auto"></div>
+    <%= form_with model: @staff,url:staff_session_path(resource_name) do |f| %>
+      <table class="tabel table-borderless">
+        <tr>
+          <th class="col-5"><%= f.label :email,"メールアドレス" %></th>
+          <td class="col-7"><%= f.email_field :email, autofocus: true, autocomplete: "email",placeholder: "sample@example.com" ,size: "30"%></td>
+        </tr>
+        <tr>
+          <th class="col-5"></th>
+          <td class="col-7"></td>
+        </tr>
+        <tr>
+          <th class="col-5"><%= f.label :password,"パスワード",size: "10" %></th>
+          <td class="col-7"><%= f.password_field :password, autocomplete: "current-password" ,size: "30" %></td>
+        </tr>
+        <tr>
+          <th></th>
+          <td>
+            <% if devise_mapping.rememberable? %>
+              <%= f.check_box :remember_me %>
+              <%= f.label :remember_me %>
+            <% end %>
+          </td>
+        </tr>
+      </table>
+      <div class="row offset-4 text-align:center">
+        <%= f.submit "ログイン",class:'btn btn-md btn-primary' %>
+      </div>
+    <% end %>
+  </div>
+  <!--未登録社員に対して、新規登録画面に誘導するための記述-->
+  <div class="row text-center" style="margin-top:20px">
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0">
+      <h6>登録がお済みでない方</h6>
+    </div>
+  </div>
+  <div class="row offset-2">
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0">
+      <%= link_to "こちら",new_staff_registration_path %> から新規登録を行ってください。
+    </div>
+  </div>
+</div>
+<%#= render "public/shared/links" %>
