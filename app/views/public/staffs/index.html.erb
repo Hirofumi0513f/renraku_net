@@ -5,7 +5,7 @@
   <div class="row mx-auto">
     <div class = "col-sm-12 col-md-10 col-lg-8 px-5 px-sm-0">
       <table class="table table-bordered border-bg">
-        <thead class="bg-teal">
+        <thead class="bg-success text-white">
           <th>プロフィール画像</th>
           <th>氏名</th>
           <th>所属組織</th>
@@ -15,7 +15,7 @@
         </thead>
         <% @staffs.each do |staff| %>
         <tbody>
-          <td></td>
+          <td><%= image_tag staff.get_profile_image(100,100) %></td>
           <td>
             <!--社員の氏名から社員の詳細情報ページに遷移させる-->
             <%= link_to public_staff_path(staff.id) do %>
@@ -23,9 +23,11 @@
               <%= staff.full_name %>
             <% end %>
           </td>
+          <!--アソシエーションを組んでいるdepartmentsテーブルから、departments_name_id/division_name_idの情報をまとめたものを表示させる-->
           <!--full_affiliationの定義は、app/models/staff.rbを参照-->
           <td><%#= staff.full_affiliation %></td>
-          <td><%#= staff.positions.position_name_id %></td>
+          <!--アソシエーションで組んでいるpositonsテーブルから、該当する役職のname_id情報を表示させる。-->
+          <td><%#= staff.positions.staff_id %></td>
           <td><%= staff.telephone_number %></td>
           <td><%= staff.email %></td>
         </tbody>
