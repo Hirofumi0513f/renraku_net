@@ -1,2 +1,40 @@
-<h1>Public::Staffs#index</h1>
-<p>Find me in app/views/public/staffs/index.html.erb</p>
+<div class="container" style="margin:30px">
+  <div class="row" style="margin:20px">
+    <h5 class="text-left">社員一覧</h5>
+  </div>
+  <div class="row mx-auto">
+    <div class = "col-sm-12 col-md-10 col-lg-8 px-5 px-sm-0">
+      <table class="table table-bordered border-bg">
+        <thead class="bg-teal">
+          <th>プロフィール画像</th>
+          <th>氏名</th>
+          <th>所属組織</th>
+          <th>役職</th>
+          <th>電話番号</th>
+          <th>メールアドレス</th>
+        </thead>
+        <% @staffs.each do |staff| %>
+        <tbody>
+          <td></td>
+          <td>
+            <!--社員の氏名から社員の詳細情報ページに遷移させる-->
+            <%= link_to public_staff_path(staff.id) do %>
+              <!--full_nameの定義は、app/models/staff.rbを参照-->
+              <%= staff.full_name %>
+            <% end %>
+          </td>
+          <!--full_affiliationの定義は、app/models/staff.rbを参照-->
+          <td><%#= staff.full_affiliation %></td>
+          <td><%#= staff.positions.position_name_id %></td>
+          <td><%= staff.telephone_number %></td>
+          <td><%= staff.email %></td>
+        </tbody>
+        <% end %>
+      </table>
+    </div>
+  </div>
+  <div class ="row mt-5 d-flex justify-content-center">
+    <!--↓ページネーションを表示させるための記述-->
+    <%= paginate @staffs %>
+  </div>
+</div>
