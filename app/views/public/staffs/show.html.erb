@@ -25,9 +25,20 @@
         <tbody>
           <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= @staff.full_name %></td>
           <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= @staff.full_name_kana %></td>
-          <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"></td>
-          <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"></td>
-          <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"></td>
+          <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">
+            <%= @staff.department_names.first.name %>
+          </td>
+          <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">
+            <%= @staff.division_names.first.name %>
+          </td>
+          <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">
+            <%= @staff.position_names.first.name %>
+            <%# @staff.positions.each do |position| %>
+              <%# position.position_names.each do |position_name| %>
+                <%#= position_name.name %>
+              <%# end %>
+            <%# end %>
+          </td>
           <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= @staff.telephone_number %></td>
           <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= @staff.email %></td>
           <!--work_styleカラムは、enumを組み込んでいるため、表示の際はカラム名の後ろに「_i18n」をつけて日本顔表示化させる-->

@@ -56,13 +56,6 @@ end
 #   Position.find_or_create_by(staff_id: staff.id, name: position[:name])
 # end
 
-  # Position.create!(
-  #   staff_id: 1,
-  #   name: "社員")
-
-  # Department.create!(
-  #   staff_id: 1,
-  #   name: "販売推進部")
 
 # departments = [
 #   {email: 'hirofumi.fukuda@renrakunet.com', name: '販売推進部' },
@@ -73,9 +66,9 @@ end
 #   Department.find_or_create_by(staff_id: staff.id, name: department[:name])
 # end
 
-  # Division.create!(
-  #   department_id: 1,
-  #   name: "第二販売支援課")
+#   Division.create!(
+#     department_id: 1,
+#     name: "第二販売支援課")
 
 # divisions = [
 #   {email: 'hirofumi.fukuda@renrakunet.com', name: '第二販売支援課' },
@@ -86,45 +79,45 @@ end
 # end
 
 # 役職の初期データを投入_2023_0213
-# PositionName.create!(
-#   [
-#     {name: '社員'},
-#     {name: '係長'},
-#     {name: '課長'},
-#     {name: '部長'},
-#     {name: '社長'},
-#     {name: '嘱託社員'},
-#     {name: 'パートナー社員'}
-#   ]
-#     )
+PositionName.create!(
+  [
+    {name: '社員'},
+    {name: '係長'},
+    {name: '課長'},
+    {name: '部長'},
+    {name: '社長'},
+    {name: '嘱託社員'},
+    {name: 'パートナー社員'}
+  ]
+    )
 
 # 課名の初期データを作成_2023_0213
-# DivisionName.create!(
-#   [
-#     {name: '第一販売推進課'},
-#     {name: '第二販売推進課'},
-#     {name: '施設管理課'},
-#     {name: '財務管理課'},
-#     {name: '金融営業課'},
-#     {name: 'セキュリティ推進課'},
-#     {name: '第一企画課'},
-#     {name: '第二企画課'},
-#     {name: '人事課'},
-#     {name: '監査課'}
-#   ]
-#     )
+DivisionName.create!(
+  [
+    {name: '人事課'},
+    {name: '第一販売推進課'},
+    {name: '第二販売推進課'},
+    {name: '施設管理課'},
+    {name: '財務管理課'},
+    {name: '金融営業課'},
+    {name: 'セキュリティ推進課'},
+    {name: '第一企画課'},
+    {name: '第二企画課'},
+    {name: '監査課'}
+  ]
+    )
 
 # 部名の初期データを作成_2023_0213
-# DepartmentName.create!(
-#   [
-#     {name: '総務部'},
-#     {name: '人事部'},
-#     {name: '営業部'},
-#     {name: '販売推進部'},
-#     {name: 'サービス企画部'},
-#     {name: 'セキュリティ管理部'}
-#   ]
-#     )
+DepartmentName.create!(
+  [
+    {name: '総務部'},
+    {name: '人事部'},
+    {name: '営業部'},
+    {name: '販売推進部'},
+    {name: 'サービス企画部'},
+    {name: 'セキュリティ管理部'}
+  ]
+    )
 
 # 社員ID１に紐づく役職テーブルの作成_2023_0213
 # Position.create!(
@@ -138,3 +131,8 @@ end
 #   department_name_id: 4,
 #   division_name_id: 2
 #   )
+
+# PositionName.first.id:position_nameテーブルの最初の１件を紐づけている
+Position.create!(staff_id: 1, position_name_id: PositionName.first.id)
+
+Department.create!(staff_id: 1, department_name_id: DepartmentName.first.id, division_name_id: DivisionName.first.id)

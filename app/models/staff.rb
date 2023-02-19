@@ -1,7 +1,11 @@
 class Staff < ApplicationRecord
   has_many :departments, dependent: :destroy
-  has_many :positions, dependent: :destroy
+  # , through: :departments:departmentテーブルを経由して、紐づいているstaffsを取得できる
+  has_many :department_names, through: :departments
+  has_many :division_names, through: :departments
 
+  has_many :positions, dependent: :destroy
+  has_many :position_names, through: :positions
   #社員の勤務形態のenum記述
   enum work_style: { retirement: 0, work: 1, short_work: 2, leave_of_absence: 3 }
 

@@ -1,4 +1,5 @@
 class Position < ApplicationRecord
   belongs_to :staff
-  has_many :position_names, dependent: :destroy
+  belongs_to :position_name
+
 end
