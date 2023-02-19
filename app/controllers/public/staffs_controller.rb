@@ -6,17 +6,18 @@ class Public::StaffsController < ApplicationController
 
   def show
     # 社員IDに紐づく詳細情報を表示させる
-    @staff =Staff.find(params[:id])
-    
+    @staffs =Staff.find(params[:id])
+
+    @staff = current_staff
   end
 
   def edit
-    @staff =Staff.find(params[:id])
+    @staffs =Staff.find(params[:id])
   end
 
   def update
-    @staff = Staff.find(params[:id])
-    if @staff.update(staff_params)
+    @staffs = Staff.find(params[:id])
+    if @staffs.update(staff_params)
       flash[:notice] ="社員情報が更新されました"
       # 社員情報の詳細ページに飛ばす
       redirect_to public_staff_path(@staff.id)

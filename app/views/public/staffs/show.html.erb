@@ -1,11 +1,11 @@
 <div class="container" style="margin:30px">
   <div class="row d-flex justify-content-center" style=margin-top:20px>
-    <h5><%= @staff.full_name %>さんの詳細情報</h5>
+    <h5><%= @staffs.full_name %>さんの詳細情報</h5>
   </div>
   <div class="row d-flex justify-content-center" style="margin-top:20px">
     <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0">
       <!--get_profile_image(width, height)の定義は、app/models/staff.rbを参照-->
-      <div><%= image_tag @staff.get_profile_image(200,200) %></div>
+      <div><%= image_tag @staffs.get_profile_image(200,200) %></div>
     </div>
     <div class="col-sm-12 col-md-8 col-lg-5 px5 px-sm-0">
       <!--table-borderless:テーブルの枠線をなしに指定-->
@@ -23,36 +23,43 @@
           <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">権限フラグ</th>
         </thead>
         <tbody>
-          <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= @staff.full_name %></td>
-          <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= @staff.full_name_kana %></td>
+          <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= @staffs.full_name %></td>
+          <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= @staffs.full_name_kana %></td>
           <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">
-            <%= @staff.department_names.first.name %>
+            <%= @staffs.department_names.first.name %>
           </td>
           <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">
-            <%= @staff.division_names.first.name %>
+            <%= @staffs.division_names.first.name %>
           </td>
           <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">
-            <%= @staff.position_names.first.name %>
+            <%= @staffs.position_names.first.name %>
             <%# @staff.positions.each do |position| %>
               <%# position.position_names.each do |position_name| %>
                 <%#= position_name.name %>
               <%# end %>
             <%# end %>
           </td>
-          <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= @staff.telephone_number %></td>
-          <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= @staff.email %></td>
+          <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= @staffs.telephone_number %></td>
+          <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= @staffs.email %></td>
           <!--work_styleカラムは、enumを組み込んでいるため、表示の際はカラム名の後ろに「_i18n」をつけて日本顔表示化させる-->
-          <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= @staff.work_style_i18n %></td>
+          <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= @staffs.work_style_i18n %></td>
           <!--is_adminカラムは、boolean型のため、if文を使用して日本語化させる-->
           <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">
-            <% if @staff.is_admin == true %>
-              <div class= "text-success">管理者</div>
-            <% else %>
-              <div class="text-muted">一般利用</div>
-            <% end %>
+            <!--ログインユーザが管理者権限を持っている時、表示させる-->
+            <%# if @staff.is_admin == true? %>
+              <% if @staffs.is_admin == true %>
+                <div class= "text-success">管理者</div>
+              <% else %>
+                <div class="text-muted">閲覧検索のみ</div>
+              <% end %>
+            <%# else %>
+            <%# end %>
           </td>
         </tbody>
       </table>
     </div>
+  </div>
+  <div class ="row mt-5 d-flex justify-content-center">
+    <%= link_to "社員情報編集" ,edit_public_staff_path ,class:'btn btn-md btn-success' %>
   </div>
 </div>

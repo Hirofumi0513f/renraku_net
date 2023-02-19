@@ -31,11 +31,6 @@ class Staff < ApplicationRecord
     self.last_name_kana + self.first_name_kana
   end
 
-  #所属組織(部名+課名)
-  def full_affiliation
-    departments.departments_name.id / departments.division_name_id
-  end
-
   # バリデーション設定
   # 名前（「姓」と「名」）のバリデーション/presenceヘルパーで入力必須にする
   validates :last_name, presence: true

@@ -24,7 +24,6 @@
             <% end %>
           </td>
           <!--アソシエーションを組んでいるdepartmentsテーブルから、departments_name_id/division_name_idの情報をまとめたものを表示させる-->
-          <!--full_affiliationの定義は、app/models/staff.rbを参照-->
           <td><%= staff.department_names.first.name %>/<%= staff.division_names.first.name %></td>
           <!--アソシエーションで組んでいるpositonsテーブルから、該当する役職のname_id情報を表示させる。-->
           <td><%= staff.position_names.first.name %></td>
