@@ -1,2 +1,47 @@
-<h1>Public::Staffs#show</h1>
-<p>Find me in app/views/public/staffs/show.html.erb</p>
+<div class="container" style="margin:30px">
+  <div class="row d-flex justify-content-center" style=margin-top:20px>
+    <h5><%= @staff.full_name %>さんの詳細情報</h5>
+  </div>
+  <div class="row d-flex justify-content-center" style="margin-top:20px">
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0">
+      <!--get_profile_image(width, height)の定義は、app/models/staff.rbを参照-->
+      <div><%= image_tag @staff.get_profile_image(200,200) %></div>
+    </div>
+    <div class="col-sm-12 col-md-8 col-lg-5 px5 px-sm-0">
+      <!--table-borderless:テーブルの枠線をなしに指定-->
+      <!---ms-writing-mode: tb-lr;writing-mode: vertical-lr;縦書き表示のコマンド-->
+      <table class="table table-borderless" style="-ms-writing-mode: tb-lr;writing-mode: vertical-lr;">
+        <thead>
+          <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">氏名</th>
+          <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">フリガナ</th>
+          <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">所属部名</th>
+          <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">所属課名</th>
+          <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">役職</th>
+          <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">電話番号</th>
+          <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">メールアドレス</th>
+          <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">勤務形態</th>
+          <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">権限フラグ</th>
+        </thead>
+        <tbody>
+          <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= @staff.full_name %></td>
+          <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= @staff.full_name_kana %></td>
+          <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"></td>
+          <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"></td>
+          <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"></td>
+          <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= @staff.telephone_number %></td>
+          <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= @staff.email %></td>
+          <!--work_styleカラムは、enumを組み込んでいるため、表示の際はカラム名の後ろに「_i18n」をつけて日本顔表示化させる-->
+          <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= @staff.work_style_i18n %></td>
+          <!--is_adminカラムは、boolean型のため、if文を使用して日本語化させる-->
+          <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">
+            <% if @staff.is_admin == true %>
+              <div class= "text-success">管理者</div>
+            <% else %>
+              <div class="text-muted">一般利用</div>
+            <% end %>
+          </td>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
