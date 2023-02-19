@@ -1,6 +1,6 @@
 class Staff < ApplicationRecord
   has_many :departments, dependent: :destroy
-  # , through: :departments:departmentテーブルを経由して、紐づいているstaffsを取得できる
+  # , through: :departments:departmentテーブルを経由して、紐づいているstaffsを取得できる。staff←（department)←department_names
   has_many :department_names, through: :departments
   has_many :division_names, through: :departments
 

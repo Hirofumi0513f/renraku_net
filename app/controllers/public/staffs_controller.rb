@@ -34,6 +34,6 @@ class Public::StaffsController < ApplicationController
     def staff_params
       params.require(:staff).permit(
         :last_name, :first_name, :last_name_kana, :first_name_kana,
-        :telephone_number, :email, :work_style, :is_admin)
+        :telephone_number, :email, :work_style, :is_admin, :image)
     end
 end
