@@ -1,2 +1,64 @@
-<h1>Public::Staffs#edit</h1>
-<p>Find me in app/views/public/staffs/edit.html.erb</p>
+<p id ="notice"></p>
+<div class="container" style="margin:30px">
+  <div class="row d-flex justify-content-center" style="margin-top:20px">
+    <h5 class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">社員情報編集画面</h5>
+  </div>
+  <div class="row d-flex justify-content-center" style="margin-top:20px">
+    <div class = "col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+      <!--local: true:HTMLとしてフォームを送信する場合-->
+      <%= form_with model: @staffs,url:public_staff_path(@staffs) ,local:true do |f| %>
+        <table class="table table-borderless" style="-ms-writing-mode: tb-lr;writing-mode: vertical-lr;">
+          <thead class="col-3">
+            <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= f.label:full_name,"氏名" %></th>
+            <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= f.label :full_name_kana,"フリガナ" %></th>
+            <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= f.label :department_names,"所属部名" %></th>
+            <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= f.label :division_names,"所属課名" %></th>
+            <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= f.label :position_names,"役職名" %></th>
+            <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= f.label :telephone_number,"電話番号" %></th>
+            <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= f.label :email,"メールアドレス" %></th>
+            <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= f.label :work_style,"勤務形態" %></th>
+            <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= f.label :is_admin,"管理者フラグ" %></th>
+          </thead>
+          <tbody class="col-9">
+            <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">
+              <%= f.text_field :last_name ,placeholder: "姓", :size=>"20" %>
+              &emsp;&emsp;
+              <%= f.text_field :first_name,placeholder: "名", :size=>"20" %>
+            </td>
+            <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">
+              <%= f.text_field :last_name_kana,placeholder: "セイ", :size=>"20" %>
+              &emsp;&emsp;
+              <%= f.text_field :first_name_kana,placeholder: "メイ", :size=>"20" %>
+            </td>
+            <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"></td>
+            <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"></td>
+            <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"></td>
+            <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">
+              <%= f.text_field :telephone_number,placeholder: "電話番号", :size=>"30" %>
+            </td>
+            <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">
+              <%= f.text_field :email,placeholder: "メールアドレス", :size=>"30" %>
+            </td>
+            <!--「勤務形態」をプルダウンリストから選択できるようにする-->
+            <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">
+              <!--t("enums.staff.work_style.#{k}"→config/locales/ja.ymlのカラムの該当箇所順に記述-->
+              <%= f.select :work_style, Staff.work_styles.keys.map { |k| [t("enums.staff.work_style.#{k}"), k] }, { include_blank: "選択ください" } %>
+            </td>
+            <!--ラジオボタンで、管理者フラグを選択できるようにする（管理者権限保持者のみ）-->
+            <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">
+              <%= f.radio_button :is_admin, :false, checked: true %>
+              <%= f.label :is_admin, "一般", {value: :false, style: "display: inline-block"} %>
+              <!--&emsp;→空白（スペース）を入れる-->
+              &emsp;&emsp;
+              <%= f.radio_button :is_admin, :true %>
+              <%= f.label :is_admin, "管理者", {value: :true, style:"display: inline-block"} %>
+            </td>
+          </tbody>
+        </table>
+        <div class ="col mt-5 d-flex justify-content-center">
+          <%= f.submit "編集内容を保存",class:'btn btn-success' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

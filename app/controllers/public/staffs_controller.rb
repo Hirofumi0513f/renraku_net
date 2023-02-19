@@ -17,7 +17,7 @@ class Public::StaffsController < ApplicationController
 
   def update
     @staffs = Staff.find(params[:id])
-    if @staffs.update(staff_params)
+    if @staffs.update!(staff_params)
       flash[:notice] ="社員情報が更新されました"
       # 社員情報の詳細ページに飛ばす
       redirect_to public_staff_path(@staff.id)
