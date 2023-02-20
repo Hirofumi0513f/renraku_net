@@ -1,16 +1,6 @@
 class Staff < ApplicationRecord
-  has_many :departments, dependent: :destroy
-  # , through: :departments:departmentテーブルを経由して、紐づいているstaffsを取得できる。staff←（department)←department_names
-  has_many :department_names, through: :departments
-  has_many :division_names, through: :departments
-
-  has_many :positions, dependent: :destroy
-  has_many :position_names, through: :positions
-
-  #関連付けしたモデルを一緒にデータ保存できるようにする
-  accepts_nested_attributes_for :department_names, allow_destroy: true
-  accepts_nested_attributes_for :division_names, allow_destroy: true
-  accepts_nested_attributes_for :position_names, allow_destroy: true
+  belongs_to :organization
+  belongs_to :position
 
   #社員の勤務形態のenum記述
   enum work_style: { work: 0, short_work: 1, leave_of_absence: 2, retirement:3}
