@@ -1,3 +1,3 @@
-class Department < ApplicationRecor
+class Department < ApplicationRecord
   belongs_to :organization
 end
