@@ -22,7 +22,7 @@
           </thead>
           <tbody class="col-9">
             <!--ActiveStrageで社員画像を挿入。モデルおよび、staffコントローラのパラメータで許可するを追記済み-->
-            <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%#= f.file_filed :image, accept: "image/*" %></td>
+            <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= f.file_field :image, accept: "image/*" %></td>
             <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">
               <%= f.text_field :last_name ,placeholder: "姓", :size=>"20" %>
               &emsp;&emsp;
@@ -33,7 +33,11 @@
               &emsp;&emsp;
               <%= f.text_field :first_name_kana,placeholder: "メイ", :size=>"20" %>
             </td>
-            <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"></td>
+            <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">
+              <%= f.fields_for :department_names do |department_name| %>
+
+              <% end %>
+            </td>
             <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"></td>
             <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"></td>
             <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">

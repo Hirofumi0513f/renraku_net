@@ -6,8 +6,14 @@ class Staff < ApplicationRecord
 
   has_many :positions, dependent: :destroy
   has_many :position_names, through: :positions
+
+  #関連付けしたモデルを一緒にデータ保存できるようにする
+  accepts_nested_attributes_for :department_names, allow_destroy: true
+  accepts_nested_attributes_for :division_names, allow_destroy: true
+  accepts_nested_attributes_for :position_names, allow_destroy: true
+
   #社員の勤務形態のenum記述
-  enum work_style: { retirement: 0, work: 1, short_work: 2, leave_of_absence: 3 }
+  enum work_style: { work: 0, short_work: 1, leave_of_absence: 2, retirement:3}
 
   #staffモデルにimage（プロフィール画像)を持たせる記述
   has_one_attached :image
