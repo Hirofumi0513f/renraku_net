@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_02_12_131840) do
+ActiveRecord::Schema.define(version: 2023_02_20_113429) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -40,35 +40,29 @@ ActiveRecord::Schema.define(version: 2023_02_12_131840) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "department_names", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "departments", force: :cascade do |t|
-    t.integer "staff_id", null: false
-    t.integer "department_name_id", null: false
-    t.integer "division_name_id", null: false
+    t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "division_names", force: :cascade do |t|
-    t.string "name"
+  create_table "divisions", force: :cascade do |t|
+    t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "position_names", force: :cascade do |t|
-    t.string "name"
+  create_table "organizations", force: :cascade do |t|
+    t.integer "department_id", null: false
+    t.integer "division_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["department_id"], name: "index_organizations_on_department_id"
+    t.index ["division_id"], name: "index_organizations_on_division_id"
   end
 
   create_table "positions", force: :cascade do |t|
-    t.integer "staff_id", null: false
-    t.integer "position_name_id", null: false
+    t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -88,10 +82,18 @@ ActiveRecord::Schema.define(version: 2023_02_12_131840) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "organization_id"
+    t.integer "position_id"
     t.index ["email"], name: "index_staffs_on_email", unique: true
+    t.index ["organization_id"], name: "index_staffs_on_organization_id"
+    t.index ["position_id"], name: "index_staffs_on_position_id"
     t.index ["reset_password_token"], name: "index_staffs_on_reset_password_token", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "organizations", "departments"
+  add_foreign_key "organizations", "divisions"
+  add_foreign_key "staffs", "organizations"
+  add_foreign_key "staffs", "positions"
 end
