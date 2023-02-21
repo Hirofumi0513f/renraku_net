@@ -1,4 +1,4 @@
-class Public::PositionNamesController < ApplicationController
+class Public::PositionsController < ApplicationController
   def index
   end
 

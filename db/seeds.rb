@@ -65,8 +65,6 @@
 #   Division.find_or_create_by(department_id: department.id, name: division[:name])
 # end
 
-Organization.create!(name: '組織1')
-
 # 役職の初期データを投入_2023_0213
 Position.create!(
   [
@@ -83,28 +81,30 @@ Position.create!(
 # 課名の初期データを作成_2023_0213
 Division.create!(
   [
-    {name: '人事課', organization: Organization.first},
-    # {name: '第一販売推進課'},
-    # {name: '第二販売推進課'},
-    # {name: '施設管理課'},
-    # {name: '財務管理課'},
-    # {name: '金融営業課'},
-    # {name: 'セキュリティ推進課'},
-    # {name: '第一企画課'},
-    # {name: '第二企画課'},
-    # {name: '監査課'}
+    {name: '人事第一課'},
+    {name: '人事第二課'},
+    {name: '第一販売推進課'},
+    {name: '第二販売推進課'},
+    {name: '施設管理課'},
+    {name: '財務管理課'},
+    {name: '第一営業課'},
+    {name: '第二営業課'},
+    {name: 'セキュリティ推進課'},
+    {name: '第一企画課'},
+    {name: '第二企画課'},
+    {name: '監査課'}
   ]
     )
 
 # 部名の初期データを作成_2023_0213
 Department.create!(
   [
-    {name: '総務部', organization: Organization.first},
-    # {name: '人事部'},
-    # {name: '営業部'},
-    # {name: '販売推進部'},
-    # {name: 'サービス企画部'},
-    # {name: 'セキュリティ管理部'}
+    {name: '人事部'},
+    {name: '総務部'},
+    {name: '営業部'},
+    {name: '販売推進部'},
+    {name: 'サービス企画部'},
+    {name: 'セキュリティ管理部'}
   ]
     )
 
@@ -134,6 +134,7 @@ Staff.create!({
     password: '19930513',
     work_style: 1,
     is_admin: true,
-    organization: Organization.first,
+    department: Department.first,
+    division: Division.first,
     position: Position.first
   })

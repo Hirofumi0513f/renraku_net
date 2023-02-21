@@ -1,6 +1,7 @@
 class Staff < ApplicationRecord
-  belongs_to :organization
-  belongs_to :position
+  belongs_to :department, dependent: :destroy
+  belongs_to :division, dependent: :destroy
+  belongs_to :position, dependent: :destroy
 
   #社員の勤務形態のenum記述
   enum work_style: { work: 0, short_work: 1, leave_of_absence: 2, retirement:3}

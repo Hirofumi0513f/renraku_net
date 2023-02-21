@@ -12,11 +12,11 @@ Rails.application.routes.draw do
     #社員検索用の名前付きルーティング
     get '/staffs/search', to:"staff#search", as: "search_staff"
 
-    resources :department_names, only: [:index, :create, :edit, :update]
+    resources :departments, only: [:index, :create, :edit, :update]
 
-    resources :division_names, only: [:index, :create, :edit, :update]
+    resources :divisions, only: [:index, :create, :edit, :update]
 
-    resources :position_names, only: [:index, :create, :edit, :update]
+    resources :positions, only: [:index, :create, :edit, :update]
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

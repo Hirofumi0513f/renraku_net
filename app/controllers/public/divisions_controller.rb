@@ -1,4 +1,4 @@
-class Public::DivisionNamesController < ApplicationController
+class Public::DivisionsController < ApplicationController
   def index
   end
 
