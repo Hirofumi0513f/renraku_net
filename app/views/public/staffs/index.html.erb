@@ -24,9 +24,9 @@
             <% end %>
           </td>
           <!--アソシエーションを組んでいるdepartmentsテーブルから、departments_name_id/division_name_idの情報をまとめたものを表示させる-->
-          <td><%#= staff.organization.dev.first.name %>/<%#= staff.division_names.first.name %></td>
+          <td><%= staff.department.name %>/<%= staff.division.name %></td>
           <!--アソシエーションで組んでいるpositonsテーブルから、該当する役職のname_id情報を表示させる。-->
-          <td><%= staff.position_names.first.name %></td>
+          <td><%= staff.position.name %></td>
           <td><%= staff.telephone_number %></td>
           <td><%= staff.email %></td>
         </tbody>
