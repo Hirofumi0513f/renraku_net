@@ -28,6 +28,13 @@ class Staff < ApplicationRecord
     self.last_name_kana + self.first_name_kana
   end
 
+  # staffモデルに、パスワード検証させる
+  # 対象モデルに「password_digest」カラムを用意する
+  # Gemfileの「gem 'bcrypt', '~> 3.1.7'」記述のコメントアウトを外す。ターミナル上で「bundle install」を実行
+  # has_secure_password:パスワードを暗号化して保存するメソッド
+
+
+
   # バリデーション設定
   # 名前（「姓」と「名」）のバリデーション/presenceヘルパーで入力必須にする
   validates :last_name, presence: true
@@ -45,6 +52,9 @@ class Staff < ApplicationRecord
 
   # 勤務形態のバリデーション/presenceヘルパーで入力必須にする
   validates :work_style, presence: true
+
+  # パスワードのバリデーション/presenceヘルパーで入力必須にする/length: { minimum: 6 }6文字以上のパスワードか検証する。/on: create→登録の時のみバリデーションを有効にする
+  #validates :password, presence: true, length: { minimum: 6 }, on: :create
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable

@@ -44,7 +44,8 @@ class Public::StaffsController < ApplicationController
         :image,
         :department_id,
         :division_id,
-        :position_id
+        :position_id,
+        :password
         )
     end
 end

@@ -66,47 +66,47 @@
 # end
 
 # 役職の初期データを投入_2023_0213
-Position.create!(
-  [
-    {name: '社員'},
-    {name: '係長'},
-    {name: '課長'},
-    {name: '部長'},
-    {name: '社長'},
-    {name: '嘱託社員'},
-    {name: 'パートナー社員'}
-  ]
-    )
+# Position.create!(
+#   [
+#     {name: '社員'},
+#     {name: '係長'},
+#     {name: '課長'},
+#     {name: '部長'},
+#     {name: '社長'},
+#     {name: '嘱託社員'},
+#     {name: 'パートナー社員'}
+#   ]
+#     )
 
-# 課名の初期データを作成_2023_0213
-Division.create!(
-  [
-    {name: '人事第一課'},
-    {name: '人事第二課'},
-    {name: '第一販売推進課'},
-    {name: '第二販売推進課'},
-    {name: '施設管理課'},
-    {name: '財務管理課'},
-    {name: '第一営業課'},
-    {name: '第二営業課'},
-    {name: 'セキュリティ推進課'},
-    {name: '第一企画課'},
-    {name: '第二企画課'},
-    {name: '監査課'}
-  ]
-    )
+# # # 課名の初期データを作成_2023_0213
+# Division.create!(
+#   [
+#     {name: '人事第一課'},
+#     {name: '人事第二課'},
+#     {name: '第一販売推進課'},
+#     {name: '第二販売推進課'},
+#     {name: '施設管理課'},
+#     {name: '財務管理課'},
+#     {name: '第一営業課'},
+#     {name: '第二営業課'},
+#     {name: 'セキュリティ推進課'},
+#     {name: '第一企画課'},
+#     {name: '第二企画課'},
+#     {name: '監査課'}
+#   ]
+#     )
 
-# 部名の初期データを作成_2023_0213
-Department.create!(
-  [
-    {name: '人事部'},
-    {name: '総務部'},
-    {name: '営業部'},
-    {name: '販売推進部'},
-    {name: 'サービス企画部'},
-    {name: 'セキュリティ管理部'}
-  ]
-    )
+# # 部名の初期データを作成_2023_0213
+# Department.create!(
+#   [
+#     {name: '人事部'},
+#     {name: '総務部'},
+#     {name: '営業部'},
+#     {name: '販売推進部'},
+#     {name: 'サービス企画部'},
+#     {name: 'セキュリティ管理部'}
+#   ]
+#     )
 
 # 社員ID１に紐づく役職テーブルの作成_2023_0213
 # Position.create!(
@@ -124,17 +124,17 @@ Department.create!(
 # PositionName.first.id:position_nameテーブルの最初の１件を紐づけている
 
 
-Staff.create!({
-    last_name: '福田',
-    first_name: '泰史',
-    last_name_kana: 'フクダ',
-    first_name_kana: 'ヒロフミ',
-    telephone_number: '050-0000-1111',
-    email: 'hirofumi.fukuda@renrakunet.com',
-    password: '19930513',
-    work_style: 1,
-    is_admin: true,
-    department: Department.first,
-    division: Division.first,
-    position: Position.first
-  })
+# Staff.create!({
+#     last_name: '福田',
+#     first_name: '泰史',
+#     last_name_kana: 'フクダ',
+#     first_name_kana: 'ヒロフミ',
+#     telephone_number: '050-0000-1111',
+#     email: 'hirofumi.fukuda@renrakunet.com',
+#     password: '19930513',
+#     work_style: 1,
+#     is_admin: true,
+#     department: Department.first,
+#     division: Division.first,
+#     position: Position.first
+#   })

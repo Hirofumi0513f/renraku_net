@@ -6,37 +6,77 @@
     </div>
   </div>
   <div class="row mx-auto">
-    <%= form_with model: @staff,url:new_staff_registration_path , local: true do |f| %>
+    <%= form_with model: @staff,url:staff_registration_path , local: true do |f| %>
+      <%= render "public/shared/error_messages", resource: resource %>
+      <table class="table table-borderless" style="-ms-writing-mode: tb-lr;writing-mode: vertical-lr;">
+          <thead class="col-3">
+            <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">
+              <!--full_nameの定義は、app/models/customer.rbを参照-->
+              <%= f.label :full_name,"名前" %>
+            </th>
+            <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= f.label :full_name_kana, "フリガナ" %></th>
+            <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= f.label :email, "電話番号" %></th>
+            <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= f.label :postal_code, "メールアドレス" %></th>
+            <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= f.label :address, "勤務形態" %></th>
+            <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= f.label :telephone_number, "所属部名" %></th>
+            <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= f.label :telephone_number, "所属課名" %></th>
+            <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= f.label :telephone_number, "役職" %></th>
+            <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= f.label :password, "パスワード（6文字以上）" %></th>
+            <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= f.label :password_confirmation, "パスワード（確認用）" %></th>
+          </thead>
+          <tbody class="col-9 text-left">
+            <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">
+              <!--autocomplete:"カラム名"→自動入力機能/placeholder:"〇〇〇〇"-->
+              (姓)　<%= f.text_field :last_name,autocomplete: "last_name",placeholder: "姓" %>
+              &emsp;&emsp;
+              <!--autocomplete:"カラム名"→自動入力機能/placeholder:"〇〇〇〇"-->
+              (名)　<%= f.text_field :first_name,autocomplete: "first_name",placeholder: "名" %>
+            </td>
+            <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">
+              (セイ)<%= f.text_field :last_name_kana,autocomplete: "last_name_kana",placeholder: "セイ" %>
+              &emsp;&emsp;
+              (メイ)<%= f.text_field :first_name_kana,autocomplete: "first_name_kana",placeholder: "メイ" %>
+            </td>
+            <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">
+              &emsp;&emsp;&emsp;<%= f.text_field :telephone_number,placeholder: "000-1111-2222" %>
+            </td>
+            <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">
+              &emsp;&emsp;&emsp;<%= f.text_field :email,autocomplete: "email",placeholder: "sample@renrakunet.com" %>
+            </td>
+            <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">
+              <!--「勤務形態」をプルダウンリストから選択できるようにする-->
+              &emsp;&emsp;&emsp;<%= f.select :work_style, Staff.work_styles.keys.map { |k| [t("enums.staff.work_style.#{k}"), k] }, { include_blank: "選択ください" }  %>
+            </td>
+            <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">
+              <!--部名（departments）モデル情報を選択できるようにしている-->
+              &emsp;&emsp;&emsp;<%= f.collection_select(:department_id, Department.all,:id ,:name) %>
+            </td>
+            <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">
+              <!--課名（divisions）モデル情報を選択できるようにしている-->
+              &emsp;&emsp;&emsp;<%= f.collection_select(:division_id, Division.all,:id,:name) %>
+            </td>
+            <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">
+              <!--役職名（positions）モデル情報を選択できるようにしている-->
+              &emsp;&emsp;&emsp;<%= f.collection_select(:position_id, Position.all,:id,:name) %>
+            </td>
+            <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">
+              &emsp;&emsp;&emsp;<%= f.password_field :password %>
+            </td>
+            <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">
+              &emsp;&emsp;&emsp;<%= f.password_field :password_confirmation %>
+            </td>
+          </tbody>
+      </table>
+      <div class = "actions">
+        <%= f.submit "新規登録", class:'btn btn-md btn-success' %>
+      </div>
     <% end %>
   </div>
+  <div class = "row" style="margin-top:30px">
+    <!--「こちら」からnew_staff_session_pathに遷移させる-->
+    <h5 class = "bg-light">既に登録済みの方</h5>
+  </div>
+  <div class = "row offset-1">
+    <%= link_to"こちら",new_staff_session_path %>　からログインしてください。
+  </div>
 </div>
-<!--↓以下、初期記述。所定の記述をするまでは保存-->
-<h2>Sign up</h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "public/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :email %><br/>
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "public/shared/links" %>
