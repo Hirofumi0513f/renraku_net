@@ -1,2 +1,47 @@
-<h1>Public::Departments#index</h1>
-<p>Find me in app/views/public/department_names/index.html.erb</p>
+<p id="notice"></p>
+<div class="container" style="margin:30px">
+  <div class="row">
+    <h5 class="text-left">部名一覧</h5>
+  </div>
+  <div class="row" style="margin-top:20px">
+    <div class = "col-sm-12 col-md-10 col-lg-8 px-5 px-sm-0">
+      <table class="table table-bordered border-dark">
+        <thead class="bg-success text-white">
+          <th>部名</th>
+        </thead>
+        <% @departments.each do |department| %>
+        <tbody>
+          <td>
+            <%= link_to edit_public_department_path(department.id) do %>
+              <%= department.name %>
+            <% end %>
+          </td>
+        </tbody>
+        <% end %>
+      </table>
+    </div>
+  </div>
+  <div class="row" style="margin-top:20px">
+    <!--部名の追加欄を作成-->
+    <h5>部名追加</h5>
+  </div>
+  <div class="row">
+    <!--新規登録が失敗した際のエラーメッセージの表示記述-->
+    <!--errors:モデルにバリデーションをかけた際にエラーの内容を確認できるメソッド。any?と組み合わせることで、エラーが発生しているかを判定できる-->
+    <% if @department.errors.any? %>
+      <%= @department.errors.count %>件のエラーが発生しました
+      <ul>
+        <% @department.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    <% end %>
+    <%= form_with model: @department, url:public_departments_path,local:true do |f| %>
+      <%= f.label :name,"部名" %>
+      &emsp;&emsp;&emsp;
+      <%= f.text_field :name,placeholder:"部名" %>
+      &emsp;&emsp;&emsp;
+        <%= f.submit "新規登録",class:'btn btn-success' %>
+    <% end %>
+  </div>
+</div>

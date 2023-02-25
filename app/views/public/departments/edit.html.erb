@@ -1,2 +1,16 @@
-<h1>Public::Departments#edit</h1>
-<p>Find me in app/views/public/department_names/edit.html.erb</p>
+<div class="container" style="margin:30px">
+  <div class="row d-flex justify-content-center" style="margin-top:20px">
+    <h5 class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">部名情報編集画面</h5>
+  </div>
+  <div class="row d-flex justify-content-center" style="margin-top:20px">
+    <div class = "col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+      <%= form_with model: @departments,url:public_department_path(@departments),local:true do |f| %>
+        <%= f.label:name,"部名" %>
+        <%= f.text_field:name,placeholder:"部名" %>
+        <div class ="col mt-5 d-flex justify-content-center">
+          <%= f.submit "変更内容を保存",class:'btn btn-success' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
