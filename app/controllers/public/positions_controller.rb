@@ -31,7 +31,7 @@ class Public::PositionsController < ApplicationController
     end
   end
 
-  以下ストロングパラメータ(意図しない役職データの登録・更新を防ぐ)
+  # 以下ストロングパラメータ(意図しない役職データの登録・更新を防ぐ)
   private
     def position_params
       params.require(:position).permit(:name)

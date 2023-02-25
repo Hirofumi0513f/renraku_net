@@ -31,7 +31,7 @@ class Public::DepartmentsController < ApplicationController
     end
   end
 
-  以下ストロングパラメータ(意図しない役職データの登録・更新を防ぐ)
+  # 以下ストロングパラメータ(意図しない役職データの登録・更新を防ぐ)
   private
     def department_params
       params.require(:department).permit(:name)

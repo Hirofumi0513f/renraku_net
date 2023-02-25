@@ -1,3 +1,4 @@
+<p id="notice"></p>
 <div class="container" style="margin:30px">
   <div class="row">
     <h5 class="text-left">登録役職一覧</h5>
@@ -6,6 +7,21 @@
     <!--役職の追加欄を作成-->
   </div>
   <div class="row" style="margin-top:20px">
-
+    <div class = "col-sm-12 col-md-10 col-lg-8 px-5 px-sm-0">
+      <table class="table table-bordered border-dark">
+        <thead class="bg-success text-white">
+          <th>役職</th>
+        </thead>
+        <% @positions.each do |position| %>
+        <tbody>
+          <td>
+            <%= link_to edit_public_position_path(position.id) do %>
+              <%= position.name %>
+            <% end %>
+          </td>
+        </tbody>
+        <% end %>
+      </table>
+    </div>
   </div>
 </div>

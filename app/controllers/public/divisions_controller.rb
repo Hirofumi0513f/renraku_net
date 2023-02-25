@@ -31,7 +31,7 @@ class Public::DivisionsController < ApplicationController
     end
   end
 
-  以下ストロングパラメータ(意図しない役職データの登録・更新を防ぐ)
+  # 以下ストロングパラメータ(意図しない役職データの登録・更新を防ぐ)
   private
     def division_params
       params.require(:division).permit(:name)
