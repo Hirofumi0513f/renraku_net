@@ -20,7 +20,7 @@ class Public::StaffsController < ApplicationController
     if @staffs.update!(staff_params)
       flash[:notice] ="社員情報が更新されました"
       # 社員情報の詳細ページに飛ばす
-      redirect_to public_staff_path(@staff.id)
+      redirect_to public_staff_path(@staffs.id)
     else
       render :edit
     end
@@ -42,9 +42,9 @@ class Public::StaffsController < ApplicationController
         :work_style,
         :is_admin,
         :image,
-        department_names:[:name, :_destroy],
-        division_names:[:name, :_destroy],
-        position_names:[:name, :_destroy]
+        departments:[:name, :_destroy],
+        divisions:[:name, :_destroy],
+        positions:[:name, :_destroy]
         )
     end
 end

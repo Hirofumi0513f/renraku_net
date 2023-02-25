@@ -26,13 +26,13 @@
           <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= @staffs.full_name %></td>
           <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= @staffs.full_name_kana %></td>
           <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">
-            <%= @staffs.department_names.first.name %>
+            <%= @staffs.department.name %>
           </td>
           <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">
-            <%= @staffs.division_names.first.name %>
+            <%= @staffs.division.name %>
           </td>
           <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">
-            <%= @staffs.position_names.first.name %>
+            <%= @staffs.position.name %>
             <%# @staff.positions.each do |position| %>
               <%# position.position_names.each do |position_name| %>
                 <%#= position_name.name %>

@@ -61,7 +61,7 @@ class Public::RegistrationsController < Devise::RegistrationsController
   # end
 
   protected
-  社員のサインアップ後の遷移先を社員一覧画面に指定
+  # 社員のサインアップ後の遷移先を社員一覧画面に指定
   def after_sign_up_path_for(resource)
     public_staffs_path
   end
