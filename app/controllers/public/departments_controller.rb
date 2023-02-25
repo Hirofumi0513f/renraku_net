@@ -1,6 +1,6 @@
 class Public::DepartmentsController < ApplicationController
   def index
-    @departments = Department.find(params[:id])
+    @departments = Department.all
   end
 
   def create

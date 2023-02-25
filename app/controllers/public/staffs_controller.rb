@@ -42,9 +42,9 @@ class Public::StaffsController < ApplicationController
         :work_style,
         :is_admin,
         :image,
-        departments:[:name, :_destroy],
-        divisions:[:name, :_destroy],
-        positions:[:name, :_destroy]
+        :department_id,
+        :division_id,
+        :position_id
         )
     end
 end

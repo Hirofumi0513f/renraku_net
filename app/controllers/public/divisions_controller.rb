@@ -1,6 +1,6 @@
 class Public::DivisionsController < ApplicationController
   def index
-    @divisions = Division.find(params[:id])
+    @divisions = Division.all
   end
 
   def create

@@ -33,9 +33,18 @@
               &emsp;&emsp;
               <%= f.text_field :first_name_kana,placeholder: "メイ", :size=>"20" %>
             </td>
-            <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"></td>
-            <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"></td>
-            <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"></td>
+            <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">
+              <!--部名（departments）モデル情報を選択できるようにしている-->
+              <%= f.collection_select(:department_id, Department.all,:id ,:name) %>
+            </td>
+            <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">
+              <!--課名（divisions）モデル情報を選択できるようにしている-->
+              <%= f.collection_select(:division_id, Division.all,:id,:name) %>
+            </td>
+            <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">
+              <!--役職名（positions）モデル情報を選択できるようにしている-->
+              <%= f.collection_select(:position_id, Position.all,:id,:name) %>
+            </td>
             <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">
               <%= f.text_field :telephone_number,placeholder: "電話番号", :size=>"30" %>
             </td>

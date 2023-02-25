@@ -1,6 +1,6 @@
 class Public::PositionsController < ApplicationController
   def index
-    @positions = Position.find(params[:id])
+    @positions = Position.all
   end
 
   def create
