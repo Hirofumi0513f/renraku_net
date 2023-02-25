@@ -1,2 +1,49 @@
-<h1>Public::Divisions#index</h1>
-<p>Find me in app/views/public/division_names/index.html.erb</p>
+<p id="notice"></p>
+<div class="container" style="margin:30px">
+  <div class="row">
+    <h5 class="text-left">課名一覧</h5>
+  </div>
+  <div class="row" style="margin-top:20px">
+    <div class = "col-sm-12 col-md-10 col-lg-8 px-5 px-sm-0">
+      <table class="table table-bordered border-dark">
+        <thead class="bg-success text-white">
+          <th>課名</th>
+        </thead>
+        <% @divisions.each do |division| %>
+        <tbody>
+          <td>
+            <%= link_to edit_public_division_path(division.id) do %>
+              <%= division.name %>
+            <% end %>
+          </td>
+        </tbody>
+        <% end %>
+      </table>
+      <!--↓ページネーションを表示させるための記述-->
+      <%= paginate @divisions %>
+    </div>
+  </div>
+  <div class="row" style="margin-top:20px">
+    <!--課名の追加欄を作成-->
+    <h5>課名追加</h5>
+  </div>
+  <div class="row">
+    <!--新規登録が失敗した際のエラーメッセージの表示記述-->
+    <!--errors:モデルにバリデーションをかけた際にエラーの内容を確認できるメソッド。any?と組み合わせることで、エラーが発生しているかを判定できる-->
+    <% if @division.errors.any? %>
+      <%= @division.errors.count %>件のエラーが発生しました
+      <ul>
+        <% @division.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    <% end %>
+    <%= form_with model: @division, url:public_divisions_path,local:true do |f| %>
+      <%= f.label :name,"課名" %>
+      &emsp;&emsp;&emsp;
+      <%= f.text_field :name,placeholder:"課名" %>
+      &emsp;&emsp;&emsp;
+        <%= f.submit "新規登録",class:'btn btn-success' %>
+    <% end %>
+  </div>
+</div>

@@ -1,7 +1,8 @@
 class Public::DepartmentsController < ApplicationController
   def index
     @department = Department.new
-    @departments = Department.all
+    # IDごとに10件ずつ表示させる
+    @departments = Department.order(:id).page(params[:page]).per(10)
   end
 
   def create

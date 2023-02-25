@@ -1,7 +1,7 @@
 <p id="notice"></p>
 <div class="container" style="margin:30px">
   <div class="row">
-    <h5 class="text-left">登録役職一覧</h5>
+    <h5 class="text-left">役職一覧</h5>
   </div>
   <div class="row" style="margin-top:20px">
     <div class = "col-sm-12 col-md-10 col-lg-8 px-5 px-sm-0">
@@ -19,6 +19,8 @@
         </tbody>
         <% end %>
       </table>
+      <!--↓ページネーションを表示させるための記述-->
+      <%= paginate @positions %>
     </div>
   </div>
   <div class="row" style="margin-top:20px">

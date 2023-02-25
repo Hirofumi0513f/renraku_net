@@ -1,7 +1,8 @@
 class Public::PositionsController < ApplicationController
   def index
     @position = Position.new
-    @positions = Position.all
+    # IDごとに10件ずつ表示させる
+    @positions = Position.order(:id).page(params[:page]).per(10)
   end
 
   def create
