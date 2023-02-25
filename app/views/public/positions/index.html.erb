@@ -3,9 +3,6 @@
   <div class="row">
     <h5 class="text-left">登録役職一覧</h5>
   </div>
-  <div class="row">
-    <!--役職の追加欄を作成-->
-  </div>
   <div class="row" style="margin-top:20px">
     <div class = "col-sm-12 col-md-10 col-lg-8 px-5 px-sm-0">
       <table class="table table-bordered border-dark">
@@ -23,5 +20,28 @@
         <% end %>
       </table>
     </div>
+  </div>
+  <div class="row" style="margin-top:20px">
+    <!--役職の追加欄を作成-->
+    <h5>役職名追加</h5>
+  </div>
+  <div class="row">
+    <!--新規登録が失敗した際のエラーメッセージの表示記述-->
+    <!--errors:モデルにバリデーションをかけた際にエラーの内容を確認できるメソッド。any?と組み合わせることで、エラーが発生しているかを判定できる-->
+    <% if @position.errors.any? %>
+      <%= @position.errors.count %>件のエラーが発生しました
+      <ul>
+        <% @position.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    <% end %>
+    <%= form_with model: @position, url:public_positions_path,local:true do |f| %>
+      <%= f.label :name,"役職名" %>
+      &emsp;&emsp;&emsp;
+      <%= f.text_field :name,placeholder:"役職名" %>
+      &emsp;&emsp;&emsp;
+        <%= f.submit "新規登録",class:'btn btn-success' %>
+    <% end %>
   </div>
 </div>

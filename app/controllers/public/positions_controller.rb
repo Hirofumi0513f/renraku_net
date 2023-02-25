@@ -1,5 +1,6 @@
 class Public::PositionsController < ApplicationController
   def index
+    @position = Position.new
     @positions = Position.all
   end
 
