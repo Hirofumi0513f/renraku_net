@@ -14,6 +14,13 @@ class Public::StaffsController < ApplicationController
 
   def edit
     @staffs =Staff.find(params[:id])
+    # 社員ID＝ログイン社員IDまたは、ログイン社員のis_adminがtrueの時編集を許可させる条件分岐
+    if @staffs.id == current_staff.id || current_staff.is_admin?
+      render :edit
+    else
+      # 社員一覧画面に飛ばす
+      redirect_to public_staffs_path
+    end
   end
 
   def update
