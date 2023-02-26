@@ -1,4 +1,7 @@
 class Public::StaffsController < ApplicationController
+  # ログインしていない時、ログインページに遷移させる記述（devise）使用の時、利用可
+  before_action :authenticate_staff!
+
   def index
     # 社員IDごとに10件ずつ表示させる
     @staffs = Staff.order(:id).page(params[:page]).per(10)
