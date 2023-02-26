@@ -15,7 +15,7 @@
         </thead>
         <% @staffs.each do |staff| %>
         <tbody>
-          <td><%= image_tag staff.get_profile_image(100,100) %></td>
+          <td><%= image_tag staff.get_profile_image(50,50) %></td>
           <td>
             <!--社員の氏名から社員の詳細情報ページに遷移させる-->
             <%= link_to public_staff_path(staff.id) do %>
