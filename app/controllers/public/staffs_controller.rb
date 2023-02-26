@@ -10,8 +10,6 @@ class Public::StaffsController < ApplicationController
   def show
     # 社員IDに紐づく詳細情報を表示させる
     @staffs =Staff.find(params[:id])
-
-    @staff = current_staff
   end
 
   def edit

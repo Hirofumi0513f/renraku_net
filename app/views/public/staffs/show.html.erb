@@ -62,7 +62,10 @@
       </table>
     </div>
   </div>
+  <!--ログイン社員のIDが表示させている社員IDとイコールまたは、is_adminがtrueの時表示させる-->
+  <% if @staffs.id == current_staff.id || current_staff.is_admin?%>
   <div class ="row mt-5 d-flex justify-content-center">
     <%= link_to "社員情報編集" ,edit_public_staff_path ,class:'btn btn-md btn-success' %>
   </div>
+  <% end %>
 </div>

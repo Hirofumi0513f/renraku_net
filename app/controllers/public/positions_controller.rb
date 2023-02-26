@@ -2,6 +2,9 @@ class Public::PositionsController < ApplicationController
   # ログインしていない時、ログインページに遷移させる記述（devise）使用の時、利用可
   before_action :authenticate_staff!
 
+  # ログインユーザのis_adminがtrueかどうかでアクセス制限させる
+  # before_action :current_staff.is_admin?
+
   def index
     @position = Position.new
     # IDごとに10件ずつ表示させる

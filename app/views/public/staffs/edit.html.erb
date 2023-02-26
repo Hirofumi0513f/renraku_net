@@ -18,7 +18,10 @@
             <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= f.label :telephone_number,"電話番号" %></th>
             <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= f.label :email,"メールアドレス" %></th>
             <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= f.label :work_style,"勤務形態" %></th>
+            <!--is_admin?:is_adminがtrueだったらの意味。boolean型の時に使用可能-->
+            <% if current_staff.is_admin? %>
             <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= f.label :is_admin,"管理者フラグ" %></th>
+            <% end %>
           </thead>
           <tbody class="col-9">
             <!--ActiveStrageで社員画像を挿入。モデルおよび、staffコントローラのパラメータで許可するを追記済み-->
@@ -56,6 +59,8 @@
               <!--t("enums.staff.work_style.#{k}"→config/locales/ja.ymlのカラムの該当箇所順に記述-->
               <%= f.select :work_style, Staff.work_styles.keys.map { |k| [t("enums.staff.work_style.#{k}"), k] }, { include_blank: "選択ください" } %>
             </td>
+            <!--is_admin?:is_adminがtrueだったらの意味。boolean型の時に使用可能-->
+            <% if current_staff.is_admin? %>
             <!--ラジオボタンで、管理者フラグを選択できるようにする（管理者権限保持者のみ）-->
             <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">
               <%= f.radio_button :is_admin, :false, checked: true %>
@@ -65,6 +70,7 @@
               <%= f.radio_button :is_admin, :true %>
               <%= f.label :is_admin, "管理者", {value: :true, style:"display: inline-block"} %>
             </td>
+            <% end %>
           </tbody>
         </table>
         <div class ="col mt-5 d-flex justify-content-center">
