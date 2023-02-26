@@ -2,8 +2,8 @@ class Public::PositionsController < ApplicationController
   # ログインしていない時、ログインページに遷移させる記述（devise）使用の時、利用可
   before_action :authenticate_staff!
 
-  # ログインユーザのis_adminがtrueかどうかでアクセス制限させる
-  # before_action :current_staff.is_admin?
+  # ログインユーザのis_adminカラムがtrueかどうかでアクセス制限させる
+  before_action :admin_staff
 
   def index
     @position = Position.new
@@ -43,5 +43,13 @@ class Public::PositionsController < ApplicationController
   private
     def position_params
       params.require(:position).permit(:name)
+    end
+
+    def admin_staff
+      # !:記述内容を反対にする。is_amin?はtrueを持ってくる記述だが、！がつくことでfalseを持ってくるようにできる
+      if !current_staff.is_admin?
+        # 社員一覧ページに遷移させる
+        redirect_to public_staffs_path
+      end
     end
 end

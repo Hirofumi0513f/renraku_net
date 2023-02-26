@@ -2,6 +2,9 @@ class Public::DivisionsController < ApplicationController
   # ログインしていない時、ログインページに遷移させる記述（devise）使用の時、利用可
   before_action :authenticate_staff!
 
+  # ログインユーザのis_adminカラムがtrueかどうかでアクセス制限させる
+  before_action :admin_staff
+
   def index
     @division = Division.new
     # IDごとに10件ずつ表示させる
@@ -40,5 +43,13 @@ class Public::DivisionsController < ApplicationController
   private
     def division_params
       params.require(:division).permit(:name)
+    end
+
+    def admin_staff
+      # !:記述内容を反対にする。is_amin?はtrueを持ってくる記述だが、！がつくことでfalseを持ってくるようにできる
+      if !current_staff.is_admin?
+        # 社員一覧ページに遷移させる
+        redirect_to public_staffs_path
+      end
     end
 end
