@@ -20,7 +20,10 @@
           <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">電話番号</th>
           <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">メールアドレス</th>
           <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">勤務形態</th>
+          <!--is_admin?:is_adminがtrueだったらの意味。boolean型の時に使用可能-->
+          <% if current_staff.is_admin? %>
           <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">権限フラグ</th>
+          <% end %>
         </thead>
         <tbody>
           <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= @staffs.full_name %></td>
@@ -44,17 +47,17 @@
           <!--work_styleカラムは、enumを組み込んでいるため、表示の際はカラム名の後ろに「_i18n」をつけて日本顔表示化させる-->
           <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= @staffs.work_style_i18n %></td>
           <!--is_adminカラムは、boolean型のため、if文を使用して日本語化させる-->
+          <!--is_admin?:is_adminがtrueだったらの意味。boolean型の時に使用可能-->
+          <% if current_staff.is_admin? %>
           <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">
             <!--ログインユーザが管理者権限を持っている時、表示させる-->
-            <%# if @staff.is_admin == true? %>
-              <% if @staffs.is_admin == true %>
+              <% if @staffs.is_admin? %>
                 <div class= "text-success">管理者</div>
               <% else %>
                 <div class="text-muted">一般</div>
               <% end %>
-            <%# else %>
-            <%# end %>
           </td>
+          <% end %>
         </tbody>
       </table>
     </div>
