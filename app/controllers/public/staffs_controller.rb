@@ -35,6 +35,7 @@ class Public::StaffsController < ApplicationController
   end
 
   def search
+    @staffs = Staff.all
   end
 
   # 以下ストロングパラメータ（意図しない社員データの登録・更新を防ぐ）
