@@ -24,7 +24,7 @@ class Public::DivisionsController < ApplicationController
   end
 
   def edit
-    @division = Division.find(params[:id])
+    @divisions = Division.find(params[:id])
   end
 
   def update

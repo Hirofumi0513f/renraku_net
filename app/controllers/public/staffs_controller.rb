@@ -35,7 +35,11 @@ class Public::StaffsController < ApplicationController
   end
 
   def search
-    @staffs = Staff.all
+    # 検索オブジェクトの作成
+    @p = Staff.ransack(params[:q])
+    # 検索結果を@resultsに挿入
+    @results = @p.result(distinct: true)
+    # 検索ページで条件を入れて検索後、検索条件に合う情報をindexページに表示させる
   end
 
   # 以下ストロングパラメータ（意図しない社員データの登録・更新を防ぐ）

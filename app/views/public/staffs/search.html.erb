@@ -1,2 +1,15 @@
-<h1>Public::Staffs#search</h1>
-<p>Find me in app/views/public/staffs/search.html.erb</p>
+<div class="container" style="margin:30px">
+    <div class="row" style="margin-top:20px">
+        <h5>社員検索</h5>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-md-10 col-lg-8 px-5 px-sm-0">
+        <!--@pに検索条件を入れて、コントローラに渡す-->
+        <!--このページで検索条件を入れた後、Staff#indexページに飛ばす-->
+        <%= search_form_for @p, url: public_staffs_path do |f| %>
+
+            <%= f.submit "検索" %>
+        <% end %>
+        </div>
+    </div>
+</div>

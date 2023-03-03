@@ -24,7 +24,7 @@ class Public::DepartmentsController < ApplicationController
   end
 
   def edit
-    @department = Department.find(params[:id])
+    @departments = Department.find(params[:id])
   end
 
   def update
