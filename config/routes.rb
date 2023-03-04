@@ -8,9 +8,15 @@ Rails.application.routes.draw do
   get '/about',to: "public/homes#about", as: "about"
 
   namespace :public do
-    resources :staffs, only: [:index, :show, :edit, :update, :search]
+    resources :staffs, only: [:index, :show, :edit, :update] do
+      collection do
+        get :search_form
+        get :search
+      end
+    end
     #社員検索用の名前付きルーティング
-    get '/staffs/search', to:"staff#search", as: "search_staff"
+    # get '/staffs/search', to:"staff#search", as: "search_staff"
+
 
     resources :departments, only: [:index, :create, :edit, :update]
 

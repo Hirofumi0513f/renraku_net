@@ -28,6 +28,21 @@ class Staff < ApplicationRecord
     self.last_name_kana + self.first_name_kana
   end
 
+  def self.search_name(last_name, first_name)
+    if last_name.present? && first_name.present?
+      Staff.where('last_name LIKE ?', "%#{last_name}%").or(Staff.where('first_name LIKE ?', "%#{first_name}%"))
+    elsif last_name.present?
+      Staff.where('last_name LIKE ?', "%#{last_name}%")
+    elsif first_name.present?
+      Staff.where('first_name LIKE ?', "%#{first_name}%")
+    else
+      Staff.all
+    end
+  end
+
+  # def self.search_department
+  # end
+
   # staffモデルに、パスワード検証させる
   # 対象モデルに「password_digest」カラムを用意する
   # Gemfileの「gem 'bcrypt', '~> 3.1.7'」記述のコメントアウトを外す。ターミナル上で「bundle install」を実行

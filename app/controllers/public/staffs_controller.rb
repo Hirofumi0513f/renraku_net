@@ -34,15 +34,38 @@ class Public::StaffsController < ApplicationController
     end
   end
 
-  def search
+  def search_form
+    @staffs = Staff.all
+
     # 検索オブジェクトの作成
-    @p = Staff.ransack(params[:q])
-    # 検索結果を@resultsに挿入
-    @results = @p.result(distinct: true)
+    # @p = Staff.ransack(params[:q])
+    # # 検索結果を@resultsに挿入/(distinct: true)→あいまい検索結果の表示を正確にする記述？
+    # @results = @p.result(distinct: true)
     # 検索ページで条件を入れて検索後、検索条件に合う情報をindexページに表示させる
   end
 
-  # 以下ストロングパラメータ（意図しない社員データの登録・更新を防ぐ）
+  def search
+    @staffs = Staff.search_name(params[:last_name], params[:first_name])
+
+    if params[:department_id].present?
+      @staffs = @staffs.where(department_id: params[:department_id])
+    end
+
+    if params[:division_id].present?
+      @staffs = @staffs.where(division_id: params[:division_id])
+    end
+
+    if params[:position_id].present?
+      @staffs = @staffs.where(position_id: params[:position_id])
+    end
+    # "%#{@full_name}%"：部分一致条件
+    # "#{@full_name}":完全一致条件
+
+    @staffs = @staffs.order(:id).page(params[:page]).per(10)
+
+  end
+
+  # 以下ストロングパラメータ（意図しない社員データの登録・更新を防ぐ）,検索は関係ない
   private
     def staff_params
       params.require(:staff).permit(
