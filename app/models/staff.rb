@@ -40,15 +40,17 @@ class Staff < ApplicationRecord
     end
   end
 
-  # def self.search_department
-  # end
-
-  # staffモデルに、パスワード検証させる
-  # 対象モデルに「password_digest」カラムを用意する
-  # Gemfileの「gem 'bcrypt', '~> 3.1.7'」記述のコメントアウトを外す。ターミナル上で「bundle install」を実行
-  # has_secure_password:パスワードを暗号化して保存するメソッド
-
-
+  def self.search_name_kana(last_name_kana, first_name_kana)
+    if last_name_kana.present? && first_name_kana.present?
+      Staff.where('last_name_kana LIKE ?', "%#{last_name_kana}%").or(Staff.where('first_name_kana LIKE ?', "%#{first_name_kana}%"))
+    elsif last_name_kana.present?
+      Staff.where('last_name_kana LIKE ?', "%#{last_name_kana}%")
+    elsif first_name_kana.present?
+      Staff.where('first_name_kana LIKE ?', "%#{first_name_kana}%")
+    else
+      Staff.all
+    end
+  end
 
   # バリデーション設定
   # 名前（「姓」と「名」）のバリデーション/presenceヘルパーで入力必須にする

@@ -36,16 +36,13 @@ class Public::StaffsController < ApplicationController
 
   def search_form
     @staffs = Staff.all
-
-    # 検索オブジェクトの作成
-    # @p = Staff.ransack(params[:q])
-    # # 検索結果を@resultsに挿入/(distinct: true)→あいまい検索結果の表示を正確にする記述？
-    # @results = @p.result(distinct: true)
-    # 検索ページで条件を入れて検索後、検索条件に合う情報をindexページに表示させる
   end
 
   def search
+    # search_nameの定義については、app/models/staff.rb内を参照ください
     @staffs = Staff.search_name(params[:last_name], params[:first_name])
+
+    @staffs = Staff.search_name_kana(params[:last_name_kana], params[:first_name_kana])
 
     if params[:department_id].present?
       @staffs = @staffs.where(department_id: params[:department_id])

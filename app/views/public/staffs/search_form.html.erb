@@ -4,24 +4,35 @@
     </div>
     <div class="row">
         <div class="col-sm-12 col-md-10 col-lg-8 px-5 px-sm-0">
-        <!--@pに検索条件を入れて、コントローラに渡す-->
-        <!--このページで検索条件を入れた後、Staff#indexページに飛ばす-->
-        <%#= search_form_for @p, url: url do |f| %>
         <%= form_with url: search_public_staffs_path, method: :get do |f| %>
             <table class="table table-borderless" style="-ms-writing-mode: tb-lr;writing-mode: vertical-lr;">
                 <thead>
-                    <th>氏名</th>
-                    <th>フリガナ</th>
-                    <th>所属部名</th>
-                    <th>所属課名</th>
-                    <th>役職</th>
+                    <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">氏名</th>
+                    <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">フリガナ</th>
+                    <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">所属部名</th>
+                    <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">所属課名</th>
+                    <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">役職</th>
                 </thead>
                 <tbody>
-                    <td>(姓)<%= f.text_field :last_name %>(名)<%= f.text_field :first_name %></td>
-                    <td>(セイ)<%= f.text_field :full_name_kana %>(メイ)</td>
-                    <td><%= f.collection_select(:department_id, Department.all,:id ,:name, { include_blank: '選択してください'}) %></td>
-                    <td><%= f.collection_select(:division_id, Division.all,:id,:name, { include_blank: '選択してください'}) %></td>
-                    <td><%= f.collection_select(:position_id, Position.all,:id,:name, { include_blank: '選択してください'}) %></td>
+                    <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">
+                        (姓)<%= f.text_field :last_name %>
+                        &emsp;&emsp;
+                        (名)<%= f.text_field :first_name %>
+                    </td>
+                    <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">
+                        (セイ)<%= f.text_field :last_name_kana %>
+                        &emsp;&emsp;
+                        (メイ)<%= f.text_field :first_name_kana %>
+                    </td>
+                    <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">
+                        <%= f.collection_select(:department_id, Department.all,:id ,:name, { include_blank: '選択してください'}) %>
+                    </td>
+                    <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">
+                        <%= f.collection_select(:division_id, Division.all,:id,:name, { include_blank: '選択してください'}) %>
+                    </td>
+                    <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">
+                        <%= f.collection_select(:position_id, Position.all,:id,:name, { include_blank: '選択してください'}) %>
+                    </td>
                 </tbody>
             </table>
 
