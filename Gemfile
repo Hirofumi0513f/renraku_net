@@ -62,5 +62,3 @@ gem 'kaminari'
 gem 'enum_help'
 
 gem 'kaminari-bootstrap'
-
-gem 'ransack'
