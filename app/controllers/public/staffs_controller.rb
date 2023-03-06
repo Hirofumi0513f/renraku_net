@@ -2,6 +2,8 @@ class Public::StaffsController < ApplicationController
   # ログインしていない時、ログインページに遷移させる記述（devise）使用の時、利用可
   before_action :authenticate_staff!
 
+  require 'csv'
+
   def index
     # 社員IDごとに10件ずつ表示させる
     @staffs = Staff.order(:id).page(params[:page]).per(10)
@@ -59,7 +61,12 @@ class Public::StaffsController < ApplicationController
     # "#{@full_name}":完全一致条件
 
     @staffs = @staffs.order(:id).page(params[:page]).per(10)
-
+    respond_to do |f|
+      f.html
+      f.csv do |csv|
+        send_staffs_csv(@staffs)
+      end
+    end
   end
 
   # 以下ストロングパラメータ（意図しない社員データの登録・更新を防ぐ）,検索は関係ない
@@ -80,5 +87,29 @@ class Public::StaffsController < ApplicationController
         :position_id,
         :password
         )
+    end
+    def send_staffs_csv(staffs)
+    # CSV.generateとは、対象データを自動的にCSV形式に変換してくれるCSVライブラリの一種
+    csv_data = CSV.generate do |csv|
+      # %w()は、空白で区切って配列を返します
+      column_names = %w(プロフィール画像 氏名 所属組織 役職 電話番号 メールアドレス)
+      # csv << column_namesは表の列に入る名前を定義します。
+      csv << column_names
+      staffs.each do |staff|
+        # column_valuesに代入するカラム値を定義します
+        column_values = [
+          staff.get_profile_image,
+          staff.full_name,
+          staff.department.name/staff.division.name,
+          staff.position.name,
+          staff.telephone_number,
+          staff.email
+        ]
+        # csv << column_valueshは表の行に入る値を定義します。
+        csv << column_values
+      end
+    end
+    # csv出力のファイル名を定義します。
+    send_data(csv_data, filename: "社員一覧.csv")
     end
 end

@@ -2,6 +2,11 @@
   <div class="row" style="margin:20px">
     <h5 class="text-left">社員一覧</h5>
   </div>
+  <div class="row mt-5 d-flex justify-content-center">
+    <!--csvファイルで出力（エクスポート）させる記述-->
+    <%= link_to "csvファイルで出力する",search_public_staffs_path(format: :csv) %>
+
+  </div>
   <div class="row">
     <div class = "col-sm-12 col-md-10 col-lg-8 px-5 px-sm-0">
       <table class="table table-bordered border-bg">
