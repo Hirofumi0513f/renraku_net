@@ -88,6 +88,9 @@ class Public::StaffsController < ApplicationController
         :password
         )
     end
+    # Q.抽出した内容でcsvエクスポートしたい
+    # 1.エクスポートしたい情報を全て実装する
+    # 2.社員検索後の内容でエクスポートさせたい
     def send_staffs_csv(staffs)
     # CSV.generateとは、対象データを自動的にCSV形式に変換してくれるCSVライブラリの一種
     csv_data = CSV.generate do |csv|
@@ -98,10 +101,10 @@ class Public::StaffsController < ApplicationController
       staffs.each do |staff|
         # column_valuesに代入するカラム値を定義します
         column_values = [
-          staff.get_profile_image,
+          # get_profile_image,←可能ならプロフィール画像も一緒にエクスポートしたい
           staff.full_name,
-          staff.department.name/staff.division.name,
-          staff.position.name,
+          # staff.department.name / staff.division.name,　←所属部署情報をcsvファイルに挿入したいｓ
+          # staff.position.name,　←役職情報もcsvファイルでエクスポートしたい
           staff.telephone_number,
           staff.email
         ]
