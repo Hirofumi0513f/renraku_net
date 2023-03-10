@@ -103,8 +103,10 @@ class Public::StaffsController < ApplicationController
         column_values = [
           # get_profile_image,←可能ならプロフィール画像も一緒にエクスポートしたい
           staff.full_name,
-          # staff.department.name / staff.division.name,　←所属部署情報をcsvファイルに挿入したいｓ
-          # staff.position.name,　←役職情報もcsvファイルでエクスポートしたい
+          # ↓所属部署情報をcsvファイルに挿入したい
+          staff.department.id / staff.division.id,
+          # ↓役職情報もcsvファイルでエクスポートしたい
+          staff.position.id,
           staff.telephone_number,
           staff.email
         ]
