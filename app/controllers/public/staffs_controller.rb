@@ -42,10 +42,9 @@ class Public::StaffsController < ApplicationController
 
   def search
     # search_nameの定義については、app/models/staff.rb内を参照ください
-    @staffs = Staff.search_name(params[:last_name], params[:first_name])
-
-    @staffs = Staff.search_name_kana(params[:last_name_kana], params[:first_name_kana])
-
+    # search_name_kanaの定義については、app/models/staff.rbを参照ください
+    @staffs = Staff.search_name(params[:last_name], params[:first_name]).search_name_kana(params[:last_name_kana], params[:first_name_kana])
+    # 以下の条件に記載がある際に、その情報を＠staffsに付け加える記述
     if params[:department_id].present?
       @staffs = @staffs.where(department_id: params[:department_id])
     end
@@ -95,18 +94,17 @@ class Public::StaffsController < ApplicationController
     # CSV.generateとは、対象データを自動的にCSV形式に変換してくれるCSVライブラリの一種
     csv_data = CSV.generate do |csv|
       # %w()は、空白で区切って配列を返します
-      column_names = %w(プロフィール画像 氏名 所属組織 役職 電話番号 メールアドレス)
+      column_names = %w(氏名 所属組織 役職 電話番号 メールアドレス)
       # csv << column_namesは表の列に入る名前を定義します。
       csv << column_names
       staffs.each do |staff|
         # column_valuesに代入するカラム値を定義します
         column_values = [
-          # get_profile_image,←可能ならプロフィール画像も一緒にエクスポートしたい
+          # get_profile_image,←可能ならプロフィール画像も一緒にエクスポートしたい。
+          # csvファイルがテキストデータである以上、画像は貼れない。
           staff.full_name,
-          # ↓所属部署情報をcsvファイルに挿入したい
-          staff.department.id / staff.division.id,
-          # ↓役職情報もcsvファイルでエクスポートしたい
-          staff.position.id,
+          staff.department.name + '/' + staff.division.name,
+          staff.position.name,
           staff.telephone_number,
           staff.email
         ]
