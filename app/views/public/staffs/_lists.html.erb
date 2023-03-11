@@ -4,8 +4,10 @@
   </div>
   <div class="row mt-5 d-flex justify-content-center">
     <!--csvファイルで出力（エクスポート）させる記述-->
-    <%= link_to "csvファイルで出力する",search_public_staffs_path(format: :csv) %>
-
+    <!--staff_controllerのsearch定義にて、検索結果を読み込ませるカラムの定義をした後、下記エクスポート条件に入れてあげる-->
+    <%= link_to "csvファイルで出力する",search_public_staffs_path(format: :csv, last_name: @last_name,
+    first_name: @first_name, last_name: @last_name_kana, first_name_kana: @first_name_kana, department_id: @department_id,
+    division_id: @division_id, position_id: @position_id,) %>
   </div>
   <div class="row">
     <div class = "col-sm-12 col-md-10 col-lg-8 px-5 px-sm-0">

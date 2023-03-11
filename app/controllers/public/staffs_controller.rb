@@ -7,6 +7,7 @@ class Public::StaffsController < ApplicationController
   def index
     # 社員IDごとに10件ずつ表示させる
     @staffs = Staff.order(:id).page(params[:page]).per(10)
+
   end
 
   def show
@@ -41,8 +42,17 @@ class Public::StaffsController < ApplicationController
   end
 
   def search
+    # エクスポートで検索条件が反映されるように、必要条件（カラム情報）を入れる
+    @last_name = params[:last_name]
+    @first_name = params[:first_name]
+    @last_name_kana = params[:last_name_kana]
+    @first_name_kana = params[:first_name_kana]
+    @department_id = params[:department_id]
+    @division_id = params[:division_id]
+    @position_id = params[:position_id]
+  
     # search_nameの定義については、app/models/staff.rb内を参照ください
-    # search_name_kanaの定義については、app/models/staff.rbを参照ください
+    # search_name_kanaの定義については、app/models/staff.rbを参照ください    
     @staffs = Staff.search_name(params[:last_name], params[:first_name]).search_name_kana(params[:last_name_kana], params[:first_name_kana])
     # 以下の条件に記載がある際に、その情報を＠staffsに付け加える記述
     if params[:department_id].present?
@@ -87,9 +97,7 @@ class Public::StaffsController < ApplicationController
         :password
         )
     end
-    # Q.抽出した内容でcsvエクスポートしたい
-    # 1.エクスポートしたい情報を全て実装する
-    # 2.社員検索後の内容でエクスポートさせたい
+
     def send_staffs_csv(staffs)
     # CSV.generateとは、対象データを自動的にCSV形式に変換してくれるCSVライブラリの一種
     csv_data = CSV.generate do |csv|
