@@ -6,6 +6,7 @@
     </div>
   </div>
   <div class="row mx-auto">
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0">
     <%= form_with model: @staff,url:staff_registration_path , local: true do |f| %>
       <%= render "public/shared/error_messages", resource: resource %>
       <table class="table table-borderless" style="-ms-writing-mode: tb-lr;writing-mode: vertical-lr;">
@@ -38,14 +39,14 @@
               (メイ)<%= f.text_field :first_name_kana,autocomplete: "first_name_kana",placeholder: "メイ" %>
             </td>
             <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">
-              &emsp;&emsp;&emsp;<%= f.text_field :telephone_number,placeholder: "000-1111-2222" %>
+              &emsp;&emsp;&emsp;<%= f.text_field :telephone_number,placeholder: "000-1111-2222", :size=>"30" %>
             </td>
             <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">
-              &emsp;&emsp;&emsp;<%= f.text_field :email,autocomplete: "email",placeholder: "sample@renrakunet.com" %>
+              &emsp;&emsp;&emsp;<%= f.text_field :email,autocomplete: "email",placeholder: "sample@renrakunet.com", :size=>"30" %>
             </td>
             <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">
               <!--「勤務形態」をプルダウンリストから選択できるようにする-->
-              &emsp;&emsp;&emsp;<%= f.select :work_style, Staff.work_styles.keys.map { |k| [t("enums.staff.work_style.#{k}"), k] }, { include_blank: "選択ください" }  %>
+              &emsp;&emsp;&emsp;<%= f.select :work_style ,Staff.work_styles.keys.map { |k| [t("enums.staff.work_style.#{k}"), k] }, { include_blank: "選択ください" }  %>
             </td>
             <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">
               <!--部名（departments）モデル情報を選択できるようにしている-->
@@ -71,6 +72,7 @@
         <%= f.submit "新規登録", class:'btn btn-md btn-success' %>
       </div>
     <% end %>
+    </div>
   </div>
   <div class = "row" style="margin-top:30px">
     <!--「こちら」からnew_staff_session_pathに遷移させる-->
