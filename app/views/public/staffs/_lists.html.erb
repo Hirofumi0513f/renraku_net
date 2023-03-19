@@ -14,7 +14,7 @@
     <% staffs.each do |staff| %>
       <div class="col-12 col-md-6 col-lg-4 mb-3">
         <div class="card">
-          <%= image_tag staff.get_profile_image(500, 500) %>
+          <%= image_tag staff.get_profile_image(300, 300) %>
           <div class="card-body">
             <h6 class="card-title">
               <!--社員の氏名から社員の詳細情報ページに遷移させる-->
@@ -46,38 +46,38 @@
   </div>
 
 
-  <div class="row d-flex">
-    <div class="mx-auto">
-      <table class="table table-bordered border-bg">
-        <thead class="bg-success text-white">
-          <th>プロフィール画像</th>
-          <th>氏名</th>
-          <th>所属組織</th>
-          <th>役職</th>
-          <th>電話番号</th>
-          <th>メールアドレス</th>
-        </thead>
-        <% staffs.each do |staff| %>
-        <tbody>
-          <td><%= image_tag staff.get_profile_image(50,50) %></td>
-          <td>
+  <!--<div class="row d-flex">-->
+  <!--  <div class="mx-auto">-->
+  <!--    <table class="table table-bordered border-bg">-->
+  <!--      <thead class="bg-success text-white">-->
+  <!--        <th>プロフィール画像</th>-->
+  <!--        <th>氏名</th>-->
+  <!--        <th>所属組織</th>-->
+  <!--        <th>役職</th>-->
+  <!--        <th>電話番号</th>-->
+  <!--        <th>メールアドレス</th>-->
+  <!--      </thead>-->
+        <%# staffs.each do |staff| %>
+  <!--      <tbody>-->
+  <!--        <td><%#= image_tag staff.get_profile_image(50,50) %></td>-->
+  <!--        <td>-->
             <!--社員の氏名から社員の詳細情報ページに遷移させる-->
-            <%= link_to public_staff_path(staff.id) do %>
+  <!--          <%#= link_to public_staff_path(staff.id) do %>-->
               <!--full_nameの定義は、app/models/staff.rbを参照-->
-              <%= staff.full_name %>
-            <% end %>
-          </td>
+  <!--            <%#= staff.full_name %>-->
+  <!--          <%# end %>-->
+  <!--        </td>-->
           <!--アソシエーションを組んでいるdepartmentsテーブルから、departments_name_id/division_name_idの情報をまとめたものを表示させる-->
-          <td><%= staff.department.name %>/<%= staff.division.name %></td>
+  <!--        <td><%#= staff.department.name %>/<%#= staff.division.name %></td>-->
           <!--アソシエーションで組んでいるpositonsテーブルから、該当する役職のname_id情報を表示させる。-->
-          <td><%= staff.position.name %></td>
-          <td><%= staff.telephone_number %></td>
-          <td><%= staff.email %></td>
-        </tbody>
-        <% end %>
-      </table>
-    </div>
-  </div>
+  <!--        <td><%#= staff.position.name %></td>-->
+  <!--        <td><%#= staff.telephone_number %></td>-->
+  <!--        <td><%#= staff.email %></td>-->
+  <!--      </tbody>-->
+  <!--      <%# end %>-->
+  <!--    </table>-->
+  <!--  </div>-->
+  <!--</div>-->
   <div class ="row mt-5 d-flex justify-content-center">
     <!--↓ページネーションを表示させるための記述-->
     <%= paginate staffs %>
