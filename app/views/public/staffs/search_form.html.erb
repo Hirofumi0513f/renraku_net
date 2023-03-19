@@ -1,11 +1,11 @@
-<div class="container">
+<div class="container" style="margin-top:20px">
     <div class="mt-5"></div>
-    <div class="row">
-        <div class="col-sm-12 col-md-10 col-lg-8 px-5 px-sm-0 mx-auto">
+    <div class="row mx-auto">
+        <div class="col-sm-12 col-md-10 col-lg-8 px-5 px-sm-0">
         <%= form_with url: search_public_staffs_path, method: :get do |f| %>
         <div class="card">
             <div class="card-header">
-                <h5 class="m-0">社員検索</h5>
+                <h5 class="m-0 text-center">社員検索</h5>
             </div>
             <table class="table table-borderless" style="-ms-writing-mode: tb-lr;writing-mode: vertical-lr;">
                 <thead>
@@ -37,7 +37,6 @@
                     </td>
                 </tbody>
             </table>
-
             <%= f.submit "検索", class:'btn btn-md btn-success' %>
             </div>
         <% end %>
