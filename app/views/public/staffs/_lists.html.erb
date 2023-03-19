@@ -1,5 +1,5 @@
-<div class="container" style="margin:30px">
-  <div class="row" style="margin:20px">
+<div class="container">
+  <div class="row">
     <h5 class="text-left">社員一覧</h5>
   </div>
   <div class="row mt-5 d-flex justify-content-center">
@@ -9,8 +9,45 @@
     first_name: @first_name, last_name: @last_name_kana, first_name_kana: @first_name_kana, department_id: @department_id,
     division_id: @division_id, position_id: @position_id,) %>
   </div>
+
+  <div class="row">
+    <% staffs.each do |staff| %>
+      <div class="col-12 col-md-6 col-lg-4 mb-3">
+        <div class="card">
+          <%= image_tag staff.get_profile_image(500, 500) %>
+          <div class="card-body">
+            <h6 class="card-title">
+              <!--社員の氏名から社員の詳細情報ページに遷移させる-->
+              <%= link_to public_staff_path(staff.id) do %>
+                <!--full_nameの定義は、app/models/staff.rbを参照-->
+                <%= staff.full_name %>
+              <% end %>
+            </h6>
+            <div class="card-text">
+              <div>
+                <!--アソシエーションを組んでいるdepartmentsテーブルから、departments_name_id/division_name_idの情報をまとめたものを表示させる-->
+                <%= staff.department.name %>/<%= staff.division.name %>
+              </div>
+              <div>
+                <!--アソシエーションで組んでいるpositonsテーブルから、該当する役職のname_id情報を表示させる。-->
+                <%= staff.position.name %>
+              </div>
+              <div>
+                <%= staff.telephone_number %>
+              </div>
+              <div>
+                <%= staff.email %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+
   <div class="row d-flex">
-    <div class = "col-sm-12 col-md-10 col-lg-8 px-5 px-sm-0">
+    <div class="mx-auto">
       <table class="table table-bordered border-bg">
         <thead class="bg-success text-white">
           <th>プロフィール画像</th>
