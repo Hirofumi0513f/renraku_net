@@ -4,11 +4,11 @@
     <h4 class="text-center"><%= @staffs.full_name %>さんの詳細情報</h4>
   </div>
   <div class="row mt-5 mx-auto justify-content-center">
-    <div class="col-sm-1 col-md-2 col-lg-6 mx-auto">
+    <div class="col-sm-3 col-md-4 col-lg-6 mx-auto">
       <!--get_profile_image(width, height)の定義は、app/models/staff.rbを参照-->
-      <div><%= image_tag @staffs.get_profile_image(500,500) %></div>
+      <div><%= image_tag @staffs.get_profile_image(500,500), class: "w-100" %></div>
     </div>
-    <div class="col-sm-10 col-md-8 col-lg-6 mx-auto">
+    <div class="col-sm-9 col-md-8 col-lg-6 mx-auto">
       <!--table-borderless:テーブルの枠線をなしに指定-->
       <!---ms-writing-mode: tb-lr;writing-mode: vertical-lr;縦書き表示のコマンド-->
       <table class="table table-borderless" style="-ms-writing-mode: tb-lr;writing-mode: vertical-lr;">
