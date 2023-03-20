@@ -4,15 +4,15 @@
     <h4 class="text-center"><%= @staffs.full_name %>さんの詳細情報</h4>
   </div>
   <div class="row mt-5 mx-auto justify-content-center">
-    <div class="col-sm-1 col-md-2 col-lg-6 px-5 px-sm-0">
+    <div class="col-sm-1 col-md-2 col-lg-6 mx-auto">
       <!--get_profile_image(width, height)の定義は、app/models/staff.rbを参照-->
       <div><%= image_tag @staffs.get_profile_image(500,500) %></div>
     </div>
-    <div class="col-sm-10 col-md-8 col-lg-6 px5 px-sm-0">
+    <div class="col-sm-10 col-md-8 col-lg-6 mx-auto">
       <!--table-borderless:テーブルの枠線をなしに指定-->
       <!---ms-writing-mode: tb-lr;writing-mode: vertical-lr;縦書き表示のコマンド-->
       <table class="table table-borderless" style="-ms-writing-mode: tb-lr;writing-mode: vertical-lr;">
-        <thead>
+        <thead class="col-4">
           <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">氏名</th>
           <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">フリガナ</th>
           <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">所属部名</th>
@@ -26,7 +26,7 @@
           <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">権限フラグ</th>
           <% end %>
         </thead>
-        <tbody>
+        <tbody class="col-8">
           <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= @staffs.full_name %></td>
           <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= @staffs.full_name_kana %></td>
           <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">
@@ -65,7 +65,7 @@
   </div>
   <!--ログイン社員のIDが表示させている社員IDとイコールまたは、is_adminがtrueの時表示させる-->
   <% if @staffs.id == current_staff.id || current_staff.is_admin?%>
-  <div class ="row mt-5 d-flex justify-content-center">
+  <div class ="row mt-3 d-flex justify-content-center">
     <%= link_to "社員情報編集" ,edit_public_staff_path ,class:'btn btn-md btn-success' %>
   </div>
   <% end %>

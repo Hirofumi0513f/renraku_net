@@ -5,8 +5,8 @@ class Public::StaffsController < ApplicationController
   require 'csv'
 
   def index
-    # 社員IDごとに10件ずつ表示させる
-    @staffs = Staff.order(:id).page(params[:page]).per(10)
+    # 社員IDごとに9件ずつ表示させる
+    @staffs = Staff.order(:id).page(params[:page]).per(9)
 
   end
 
@@ -50,9 +50,9 @@ class Public::StaffsController < ApplicationController
     @department_id = params[:department_id]
     @division_id = params[:division_id]
     @position_id = params[:position_id]
-  
+
     # search_nameの定義については、app/models/staff.rb内を参照ください
-    # search_name_kanaの定義については、app/models/staff.rbを参照ください    
+    # search_name_kanaの定義については、app/models/staff.rbを参照ください
     @staffs = Staff.search_name(params[:last_name], params[:first_name]).search_name_kana(params[:last_name_kana], params[:first_name_kana])
     # 以下の条件に記載がある際に、その情報を＠staffsに付け加える記述
     if params[:department_id].present?

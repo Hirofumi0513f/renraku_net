@@ -7,8 +7,8 @@ class Public::DivisionsController < ApplicationController
 
   def index
     @division = Division.new
-    # IDごとに10件ずつ表示させる
-    @divisions = Division.order(:id).page(params[:page]).per(10)
+    # IDごとに9件ずつ表示させる
+    @divisions = Division.order(:id).page(params[:page]).per(9)
   end
 
   def create
