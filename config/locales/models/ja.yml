@@ -1,0 +1,24 @@
+# modelのカラム名を日本語化させるためのファイル
+ja:
+  activerecord:
+          models:
+            staff: "社員"
+            department: "部"
+            division: "課"
+            position: "役職"
+          attributes:
+            staff:
+              last_name: "姓"
+              first_name: "名"
+              last_name_kana: "セイ"
+              first_name_kana: "メイ"
+              telephone_number: "電話番号"
+              email: "メールアドレス"
+              work_style: "勤務形態"
+              is_admin: "権限フラグ"
+            department:
+              name: "部名"
+            division:
+              name: "課名"
+            position:
+              name: "役職名"

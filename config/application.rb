@@ -18,6 +18,10 @@ module RenrakuNet
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    #↓ railsアプリのデフォルト言語を日本語に指定
     config.i18n.default_locale = :ja
+    # config/locales配下のymlファイルに「config/locales/models/ja.yml」の設定を反映させる記述
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.yml').to_s]
   end
 end
