@@ -14,10 +14,11 @@ class Public::PositionsController < ApplicationController
   def create
     @position = Position.new(position_params)
     if @position.save
-      flash[:notice] = "役職が追加されました。"
+      flash[:notice] = "役職が追加されました"
       # 登録に成功したら、役職一覧ページに飛ばす
       redirect_to public_positions_path
     else
+      @positions = Position.order(:id).page(params[:page]).per(9)
       # 役職一覧ページに役職追加画面を作成するため、同じく役職一覧ページに飛ばす
       render :index
     end
@@ -29,7 +30,7 @@ class Public::PositionsController < ApplicationController
 
   def update
     @positions = Position.find(params[:id])
-    if @positions.update!(position_params)
+    if @positions.update(position_params)
       # 役職情報の更新が成功したら役職一覧ページに遷移させる
       flash[:notice] = "役職情報が更新されました"
       redirect_to public_positions_path
