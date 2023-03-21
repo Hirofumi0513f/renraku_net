@@ -14,10 +14,11 @@ class Public::DivisionsController < ApplicationController
   def create
     @division = Division.new(division_params)
     if @division.save
-      flash[:notice] = "課名が追加されました。"
+      flash[:notice] = "課名が追加されました"
       # 登録に成功したら、課名一覧ページに飛ばす
       redirect_to public_divisions_path
     else
+      @divisions = Division.order(:id).page(params[:page]).per(9)
       # 課名一覧ページに課名追加画面を作成するため、同じく課名一覧ページに飛ばす
       render :index
     end
@@ -29,9 +30,9 @@ class Public::DivisionsController < ApplicationController
 
   def update
     @divisions = Division.find(params[:id])
-    if @divisions.update!(division_params)
+    if @divisions.update(division_params)
       # 課名情報の更新が成功したら課名一覧ページに遷移させる
-      flash[:notice] = "課名情報が更新されました"
+      flash[:notice] = "課名が更新されました"
       redirect_to public_divisions_path
     else
       # 課名更新が失敗したら課名情報編集ページに戻す

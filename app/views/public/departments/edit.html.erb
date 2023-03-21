@@ -6,7 +6,7 @@
     <div class = "col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
       <%= form_with model: @departments,url:public_department_path(@departments),local:true do |f| %>
         <%= f.label:name,"部名" %>
-        <!--新規登録が失敗した際のエラーメッセージの表示記述-->
+        <!--更新が失敗した際のエラーメッセージの表示記述-->
         <!--errors:モデルにバリデーションをかけた際にエラーの内容を確認できるメソッド。any?と組み合わせることで、エラーが発生しているかを判定できる-->
           <% if @departments.errors.any? %>
             <%= @departments.errors.count %>件のエラーが発生しました

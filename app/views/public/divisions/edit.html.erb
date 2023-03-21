@@ -1,11 +1,21 @@
 <div class="container" style="margin:30px">
-  <div class="row d-flex justify-content-center" style="margin-top:20px">
+  <div class="row d-flex justify-content-center mt-2">
     <h5 class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">課名情報編集画面</h5>
   </div>
-  <div class="row d-flex justify-content-center" style="margin-top:20px">
+  <div class="row d-flex justify-content-center mt-2">
     <div class = "col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
       <%= form_with model: @divisions,url:public_division_path(@divisions),local:true do |f| %>
         <%= f.label:name,"課名" %>
+        <!--更新が失敗した際のエラーメッセージの表示記述-->
+        <!--errors:モデルにバリデーションをかけた際にエラーの内容を確認できるメソッド。any?と組み合わせることで、エラーが発生しているかを判定できる-->
+          <% if @divisions.errors.any? %>
+            <%= @divisions.errors.count %>件のエラーが発生しました
+            <ul>
+              <% @divisions.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          <% end %>
         <%= f.text_field:name,placeholder:"課名" %>
         <div class ="col mt-5 d-flex justify-content-center">
           <%= f.submit "変更内容を保存",class:'btn btn-success' %>

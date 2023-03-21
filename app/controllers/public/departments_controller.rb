@@ -18,7 +18,6 @@ class Public::DepartmentsController < ApplicationController
       # 登録に成功したら、部署一覧ページに飛ばす
       redirect_to public_departments_path
     else
-      flash[:notice] = "部名の追加に失敗しました"
       @departments = Department.order(:id).page(params[:page]).per(9)
       # 部署一覧ページに部署追加画面を作成するため、同じく部署一覧ページに飛ばす
       render :index
