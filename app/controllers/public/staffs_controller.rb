@@ -21,6 +21,7 @@ class Public::StaffsController < ApplicationController
     if @staffs.id == current_staff.id || current_staff.is_admin?
       render :edit
     else
+      @staffs = Staff.order(:id).page(params[:page]).per(9)
       # 社員一覧画面に飛ばす
       redirect_to public_staffs_path
     end
@@ -28,7 +29,7 @@ class Public::StaffsController < ApplicationController
 
   def update
     @staffs = Staff.find(params[:id])
-    if @staffs.update!(staff_params)
+    if @staffs.update(staff_params)
       flash[:notice] ="社員情報が更新されました"
       # 社員情報の詳細ページに飛ばす
       redirect_to public_staff_path(@staffs.id)

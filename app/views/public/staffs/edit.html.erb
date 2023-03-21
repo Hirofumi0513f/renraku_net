@@ -1,11 +1,21 @@
-<p id ="notice"></p>
 <div class="container">
+  <p id ="notice"></p>
   <div class="mt-3"></div>
   <div class="row justify-content-center">
     <h4 class="col-sm-12 col-md-8 col-lg-5 mt-3 mx-auto text-center">社員情報編集画面</h4>
   </div>
   <div class="row d-flex justify-content-center">
     <div class = "col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+      <!--更新が失敗した際のエラーメッセージの表示記述-->
+      <!--errors:モデルにバリデーションをかけた際にエラーの内容を確認できるメソッド。any?と組み合わせることで、エラーが発生しているかを判定できる-->
+      <% if @staffs.errors.any? %>
+        <%= @staffs.errors.count %>件のエラーが発生しました
+        <ul>
+          <% @staffs.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      <% end %>
       <!--local: true:HTMLとしてフォームを送信する場合-->
       <%= form_with model: @staffs,url:public_staff_path(@staffs) ,local:true do |f| %>
         <table class="table table-borderless" style="-ms-writing-mode: tb-lr;writing-mode: vertical-lr;">
@@ -22,7 +32,7 @@
             <!--is_admin?:is_adminがtrueだったらの意味。boolean型の時に使用可能-->
             <!--管理者権限を持っている社員のみ、表示および編集可能にするため制限をかけている-->
             <% if current_staff.is_admin? %>
-            <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= f.label :is_admin,"管理者フラグ" %></th>
+            <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= f.label :is_admin,"権限フラグ" %></th>
             <% end %>
           </thead>
           <tbody class="col-9">
