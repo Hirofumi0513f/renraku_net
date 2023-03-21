@@ -20,6 +20,7 @@
             <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= f.label :email,"メールアドレス" %></th>
             <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= f.label :work_style,"勤務形態" %></th>
             <!--is_admin?:is_adminがtrueだったらの意味。boolean型の時に使用可能-->
+            <!--管理者権限を持っている社員のみ、表示および編集可能にするため制限をかけている-->
             <% if current_staff.is_admin? %>
             <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= f.label :is_admin,"管理者フラグ" %></th>
             <% end %>

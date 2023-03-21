@@ -30,6 +30,7 @@ class Staff < ApplicationRecord
 
   def self.search_name(last_name, first_name)
     if last_name.present? && first_name.present?
+      # 曖昧検索を可能にする記述
       Staff.where('last_name LIKE ?', "%#{last_name}%").or(Staff.where('first_name LIKE ?', "%#{first_name}%"))
     elsif last_name.present?
       Staff.where('last_name LIKE ?', "%#{last_name}%")
