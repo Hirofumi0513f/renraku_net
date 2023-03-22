@@ -6,18 +6,13 @@
   </div>
   <div class="row d-flex justify-content-center">
     <div class = "col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
-      <!--更新が失敗した際のエラーメッセージの表示記述-->
-      <!--errors:モデルにバリデーションをかけた際にエラーの内容を確認できるメソッド。any?と組み合わせることで、エラーが発生しているかを判定できる-->
-      <% if @staffs.errors.any? %>
-        <%= @staffs.errors.count %>件のエラーが発生しました
-        <ul>
-          <% @staffs.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-          <% end %>
-        </ul>
-      <% end %>
       <!--local: true:HTMLとしてフォームを送信する場合-->
       <%= form_with model: @staffs,url:public_staff_path(@staffs) ,local:true do |f| %>
+        <!--更新が失敗した際のエラーメッセージの表示記述-->
+        <!--errors:モデルにバリデーションをかけた際にエラーの内容を確認できるメソッド。any?と組み合わせることで、エラーが発生しているかを判定できる-->
+        <!--部分テンプレートでのエラーメッセージ表示確認-->
+        <!--詳細は「app/view/layout/_error_messages.html.erb」参照-->
+        <%= render 'layouts/error_messages', model: f.object %>
         <table class="table table-borderless" style="-ms-writing-mode: tb-lr;writing-mode: vertical-lr;">
           <thead class="col-3">
             <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">社員画像</th>

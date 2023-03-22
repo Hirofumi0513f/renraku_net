@@ -8,14 +8,9 @@
         <%= f.label:name,"課名" %>
         <!--更新が失敗した際のエラーメッセージの表示記述-->
         <!--errors:モデルにバリデーションをかけた際にエラーの内容を確認できるメソッド。any?と組み合わせることで、エラーが発生しているかを判定できる-->
-          <% if @divisions.errors.any? %>
-            <%= @divisions.errors.count %>件のエラーが発生しました
-            <ul>
-              <% @divisions.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-              <% end %>
-            </ul>
-          <% end %>
+        <!--部分テンプレートでのエラーメッセージ表示確認-->
+        <!--詳細は「app/view/layout/_error_messages.html.erb」参照-->
+        <%= render 'layouts/error_messages', model: f.object %>
         <%= f.text_field:name,placeholder:"課名" %>
         <div class ="col mt-5 d-flex justify-content-center">
           <%= f.submit "変更内容を保存",class:'btn btn-success' %>
