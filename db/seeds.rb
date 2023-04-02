@@ -65,7 +65,7 @@
 #   Division.find_or_create_by(department_id: department.id, name: division[:name])
 # end
 
-役職の初期データを投入_2023_0213
+# 役職の初期データを投入_2023_0213
 Position.create!(
   [
     {name: '社員'},
