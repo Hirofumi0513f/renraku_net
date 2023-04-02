@@ -66,7 +66,7 @@ class Staff < ApplicationRecord
   validates :telephone_number, presence: true
 
   # メールアドレスのバリデーション/presenceヘルパーで入力必須にする
-  validates :email, presence: true
+  # validates :email, presence: true
 
   # 勤務形態のバリデーション/presenceヘルパーで入力必須にする
   validates :work_style, presence: true
