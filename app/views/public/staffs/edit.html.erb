@@ -25,8 +25,8 @@
             <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= f.label :email,"メールアドレス" %></th>
             <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= f.label :work_style,"勤務形態" %></th>
             <!--is_admin?:is_adminがtrueだったらの意味。boolean型の時に使用可能-->
-            <!--管理者権限を持っている社員のみ、表示および編集可能にするため制限をかけている-->
-            <% if current_staff.is_admin? %>
+            <!--管理者権限を持っている社員およびログインしているユーザのみ、表示および編集可能にするため制限をかけている-->
+            <% if current_staff.is_admin? || @staffs.id == current_staff.id %>
             <th style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;"><%= f.label :is_admin,"権限フラグ" %></th>
             <% end %>
           </thead>
@@ -67,7 +67,7 @@
               <%= f.select :work_style, Staff.work_styles.keys.map { |k| [t("enums.staff.work_style.#{k}"), k] }, { include_blank: "選択ください" } %>
             </td>
             <!--is_admin?:is_adminがtrueだったらの意味。boolean型の時に使用可能-->
-            <% if current_staff.is_admin? %>
+            <% if current_staff.is_admin? || @staffs.id == current_staff.id %>
             <!--ラジオボタンで、管理者フラグを選択できるようにする（管理者権限保持者のみ）-->
             <td style="-ms-writing-mode : lr-tb; writing-mode : horizontal-tb; white-space : nowrap;">
               <%= f.radio_button :is_admin, :false, checked: true %>
