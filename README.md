@@ -1,24 +1,39 @@
-# README
+# <renraku_net>
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サイト概要
+<社員の所属・連絡先検索ツール>
 
-Things you may want to cover:
+### サイトテーマ
+*社員の見える化
 
-* Ruby version
+### テーマを選んだ理由
+*リモートワーク下で、誰がどこに所属しているのか。どんな顔をしているのか等が見えづらくなっている。
+*普段チャット等のやり取りをしていても出社した際に顔が分からずすれ違うこともありました。
+*「どこに、誰がいて、誰と同じ部署なのか」を把握しやすくするために本ツールを作成しました。
 
-* System dependencies
+### ターゲットユーザ
+*主にリモートワーク下の会社員/多くの部署を抱える組織も対象
 
-* Configuration
+### 主な利用シーン
+*連絡を取り合う時
+*スケジュール設定をする時等
 
-* Database creation
+##実装機能リストURL
+https://docs.google.com/spreadsheets/d/1SgGdg-kdnkj7ns6bqtCsIy_2zkw1AeL5NaX10_28aVo/edit?usp=sharing
 
-* Database initialization
+## 設計書
+<...>
 
-* How to run the test suite
+## 開発環境
+- OS：Linux(CentOS)
+- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- フレームワーク：Ruby on Rails
+- JSライブラリ：jQuery
+- IDE：Cloud9
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## 使用素材
+- 外部サービスの画像素材・音声素材を使用した場合は、必ずサービス名とURLを明記してください。
+- 使用しない場合は、使用素材の項目をREADMEから削除してください。
+-
+##作者
+*福田泰史
